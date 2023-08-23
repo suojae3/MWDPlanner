@@ -1,20 +1,14 @@
-//
-//  ViewController.swift
-//  MWDPlanner
-//
-//  Created by ㅣ on 2023/08/22.
-//
 
 import UIKit
 
 
 
+
 //MARK: Instantiation
-class SharedComponent {
+class FloatingButton {
     
-    private let sharedModel = SharedModel()
-    
-    
+
+
     let tasksTableView: UITableView = {
         let tableView = UITableView()
         return tableView
@@ -29,17 +23,6 @@ class SharedComponent {
         return button
     }()
 
-}
-
-
-//MARK: Shared Model
-extension SharedComponent {
+  
     
-    func addTask() {
-        sharedModel.addTask()
-    }
 }
-
-
-
-

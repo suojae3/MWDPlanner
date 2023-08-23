@@ -8,11 +8,16 @@
 import Foundation
 
 
-class SharedModel {
+
+class FloatingButtonModel {
     
-    func addTask() {
-        print("할 일 추가 테스트")
-    }
     
+
+
     
 }
+
+
+
+
+
