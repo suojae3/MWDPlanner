@@ -1,8 +1,11 @@
-//
-//  File2.swift
-//  MWDPlanner
-//
-//  Created by ㅣ on 2023/08/22.
-//
+
 
 import Foundation
+
+
+struct Task: Codable {
+    let id: UUID
+    var title: String
+    var dueDate: Date
+    var description: String
+}
