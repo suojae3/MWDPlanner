@@ -8,11 +8,6 @@
 import Foundation
 
 
-class SharedModel {
-    
-    func addTask() {
-        print("할 일 추가 테스트")
-    }
-    
+class AddTaskModel {
     
 }

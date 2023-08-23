@@ -7,10 +7,15 @@
 
 import UIKit
 
+
+
+
 //MARK: Instantiation
 class MonthlyView: UIViewController {
 
-    private let sharedModule = SharedComponent()
+    private let taskTableView = TaskTableView()
+    private let floatingButton = FloatingButton(model: FloatingButtonModel())
+    weak var delegate: FloatingButtonModelDelegate?
     
     
     //컴포넌트
@@ -32,40 +37,37 @@ class MonthlyView: UIViewController {
        }()
 }
 
+
+
 //MARK: LifeCycle
 extension MonthlyView {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        addView()
-        setupConstraints()
+        setUpUI()
+        floatingButton.model.delegate = self
+
     }
 }
 
 
-//MARK: AddView
-extension MonthlyView {
-    func addView() {
-        view.addSubview(self.profileView)
-        view.addSubview(self.searchBar)
-        view.addSubview(self.calendarView)
-        view.addSubview(sharedModule.tasksTableView)
-        view.addSubview(sharedModule.floatingButton)
-        sharedModule.floatingButton.addTarget(self, action: #selector(didTapAddTask), for: .touchUpInside)
-    }
-}
-
-//MARK: UI Constraints
+//MARK: SetUpUI
 extension MonthlyView {
     
-    func setupConstraints() {
+    func setUpUI() {
         
+            view.addSubview(self.profileView)
+            view.addSubview(self.searchBar)
+            view.addSubview(self.calendarView)
+        view.addSubview(self.taskTableView.tasksTableView)
+            view.addSubview(floatingButton.floatingButton)
+
         // AutoResizeMask 끄기
         self.profileView.translatesAutoresizingMaskIntoConstraints = false
         self.searchBar.translatesAutoresizingMaskIntoConstraints = false
         self.calendarView.translatesAutoresizingMaskIntoConstraints = false
-        sharedModule.tasksTableView.translatesAutoresizingMaskIntoConstraints = false
-        sharedModule.floatingButton.translatesAutoresizingMaskIntoConstraints = false
+        self.taskTableView.tasksTableView.translatesAutoresizingMaskIntoConstraints = false
+        floatingButton.floatingButton.translatesAutoresizingMaskIntoConstraints = false
             
         // Profile View 제약
         NSLayoutConstraint.activate([
@@ -92,31 +94,30 @@ extension MonthlyView {
         
         // Tasks TableView 제약
         NSLayoutConstraint.activate([
-            sharedModule.tasksTableView.topAnchor.constraint(equalTo: self.calendarView.bottomAnchor, constant: 10),
-            sharedModule.tasksTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            sharedModule.tasksTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            sharedModule.tasksTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            self.taskTableView.tasksTableView.topAnchor.constraint(equalTo: self.calendarView.bottomAnchor, constant: 10),
+            self.taskTableView.tasksTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            self.taskTableView.tasksTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            self.taskTableView.tasksTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
             
         // Floating Button 제약
         NSLayoutConstraint.activate([
-            sharedModule.floatingButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            sharedModule.floatingButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
-            sharedModule.floatingButton.widthAnchor.constraint(equalToConstant: 50),
-            sharedModule.floatingButton.heightAnchor.constraint(equalToConstant: 50)
+            floatingButton.floatingButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            floatingButton.floatingButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            floatingButton.floatingButton.widthAnchor.constraint(equalToConstant: 50),
+            floatingButton.floatingButton.heightAnchor.constraint(equalToConstant: 50)
             ])
         }
 }
 
 
-//MARK: Model
-extension MonthlyView {
-    
-    // 플로팅 버튼
-    @objc func didTapAddTask() {
-        sharedModule.addTask()
+//MARK: 프로토콜 - 델리게이트 패턴 구현
+extension MonthlyView: FloatingButtonModelDelegate {
+    func showAddTaskActionSheet() {
+        let addTaskSheet = AddTaskActionSheet()
+        present(addTaskSheet, animated: true, completion: nil)
     }
-    
-    
 }
+
+
 
