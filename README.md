@@ -1,6 +1,8 @@
 
 ## 파일 구조 
 
+&nbsp;&nbsp;&nbsp;&nbsp;<img src="Structure.png"><br/>
+
 <pre>
 MyPlanner App <br/>
 │
