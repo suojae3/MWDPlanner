@@ -28,7 +28,7 @@ class AddTaskActionSheet: UIViewController {
     
     let datePicker: UIDatePicker = {
         let picker = UIDatePicker()
-        picker.datePickerMode = .date
+        picker.datePickerMode = .dateAndTime
         return picker
     }()
     
@@ -93,25 +93,23 @@ extension AddTaskActionSheet {
              titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
              
              // titleTextField constraints
-             titleTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
+             titleTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 50),
              titleTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
              titleTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
              
              // datePicker constraints
-             datePicker.topAnchor.constraint(equalTo: titleTextField.bottomAnchor, constant: 0),
-             datePicker.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 3),
-             datePicker.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+             datePicker.topAnchor.constraint(equalTo: titleTextField.bottomAnchor, constant: 10),
+             datePicker.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
              
              // descriptionTextView constraints
              descriptionTextView.topAnchor.constraint(equalTo: datePicker.bottomAnchor, constant: 20),
              descriptionTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
              descriptionTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-             descriptionTextView.heightAnchor.constraint(equalToConstant: 100),  // or any desired height
+             descriptionTextView.heightAnchor.constraint(equalToConstant: 150),
              
              // saveButton constraints
              saveButton.topAnchor.constraint(equalTo: descriptionTextView.bottomAnchor, constant: 20),
              saveButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-             saveButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
          ])
      }
     

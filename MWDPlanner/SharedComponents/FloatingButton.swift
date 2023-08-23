@@ -5,30 +5,22 @@ import UIKit
 
 
 //MARK: Instantiation
+
 class FloatingButton {
-    
+    let model: FloatingButtonModel
+    let tasksTableView: UITableView = UITableView()
+    let floatingButton: UIButton = UIButton(type: .system)
 
+    init(model: FloatingButtonModel) {
+        self.model = model
+        configureFloatingButton()
+    }
 
-    let tasksTableView: UITableView = {
-        let tableView = UITableView()
-        return tableView
-    }()
-    
-    let floatingButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.backgroundColor = .blue
-        button.setTitle("+", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-        button.layer.cornerRadius = 25
-        button.addTarget(self, action: #selector(didTapAddTask), for: .touchUpInside)
-        return button
-    }()
-}
-
-//밖의 뷰컨트롤러가 필요한 상황
-extension FloatingButton {
-    @objc func didTapAddTask() {
-           let addTaskSheet = AddTaskActionSheet()
-            present(addTaskSheet, animated: true)
-        }
+    private func configureFloatingButton() {
+        floatingButton.backgroundColor = .blue
+        floatingButton.setTitle("+", for: .normal)
+        floatingButton.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        floatingButton.layer.cornerRadius = 25
+        floatingButton.addTarget(model, action: #selector(model.buttonTapped), for: .touchUpInside)
+    }
 }
