@@ -23,9 +23,7 @@ class FloatingButtonModel {
     
     @objc func buttonTapped() {
         print("buttonTapped")
-
         delegate?.showAddTaskActionSheet()
-
     }
 }
 

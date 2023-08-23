@@ -8,7 +8,6 @@ import UIKit
 
 class FloatingButton {
     let model: FloatingButtonModel
-    let tasksTableView: UITableView = UITableView()
     let floatingButton: UIButton = UIButton(type: .system)
 
     init(model: FloatingButtonModel) {

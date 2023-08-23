@@ -13,7 +13,7 @@ import UIKit
 //MARK: Instantiation
 class MonthlyView: UIViewController {
 
-    
+    private let taskTableView = TaskTableView()
     private let floatingButton = FloatingButton(model: FloatingButtonModel())
     weak var delegate: FloatingButtonModelDelegate?
     
@@ -59,14 +59,14 @@ extension MonthlyView {
             view.addSubview(self.profileView)
             view.addSubview(self.searchBar)
             view.addSubview(self.calendarView)
-            view.addSubview(floatingButton.tasksTableView)
+        view.addSubview(self.taskTableView.tasksTableView)
             view.addSubview(floatingButton.floatingButton)
 
         // AutoResizeMask 끄기
         self.profileView.translatesAutoresizingMaskIntoConstraints = false
         self.searchBar.translatesAutoresizingMaskIntoConstraints = false
         self.calendarView.translatesAutoresizingMaskIntoConstraints = false
-        floatingButton.tasksTableView.translatesAutoresizingMaskIntoConstraints = false
+        self.taskTableView.tasksTableView.translatesAutoresizingMaskIntoConstraints = false
         floatingButton.floatingButton.translatesAutoresizingMaskIntoConstraints = false
             
         // Profile View 제약
@@ -94,10 +94,10 @@ extension MonthlyView {
         
         // Tasks TableView 제약
         NSLayoutConstraint.activate([
-            floatingButton.tasksTableView.topAnchor.constraint(equalTo: self.calendarView.bottomAnchor, constant: 10),
-            floatingButton.tasksTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            floatingButton.tasksTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            floatingButton.tasksTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            self.taskTableView.tasksTableView.topAnchor.constraint(equalTo: self.calendarView.bottomAnchor, constant: 10),
+            self.taskTableView.tasksTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            self.taskTableView.tasksTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            self.taskTableView.tasksTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
             
         // Floating Button 제약
@@ -112,7 +112,6 @@ extension MonthlyView {
 
 
 //MARK: 프로토콜 - 델리게이트 패턴 구현
-
 extension MonthlyView: FloatingButtonModelDelegate {
     func showAddTaskActionSheet() {
         let addTaskSheet = AddTaskActionSheet()
