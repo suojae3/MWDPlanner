@@ -7,10 +7,10 @@
 
 import UIKit
 
-protocol PopUpDelegate {
-    func popUpAddTaskSheet()
-}
 
+protocol PopUpActionSheetDelegate {
+    func popUpActionSheet(_ view: MonthlyView)
+}
 
 
 //MARK: Instantiation
@@ -51,15 +51,6 @@ extension MonthlyView {
 }
 
 
-//MARK: Delegate methods
-extension MonthlyView {
-    // 플로팅 버튼
-    @objc func didTapAddTask() {
-           let addTaskSheet = AddTaskActionSheet()
-            present(addTaskSheet, animated: true)
-        }
-    }
-
 
 
 //MARK: SeupUI
@@ -67,13 +58,12 @@ extension MonthlyView {
     
     func setUpUI() {
         
-
             view.addSubview(self.profileView)
             view.addSubview(self.searchBar)
             view.addSubview(self.calendarView)
             view.addSubview(foatingButton.tasksTableView)
             view.addSubview(foatingButton.floatingButton)
-            foatingButton.floatingButton.addTarget(self, action: #selector(didTapAddTask), for: .touchUpInside)
+      
         
         
         // AutoResizeMask 끄기
