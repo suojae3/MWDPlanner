@@ -1,5 +1,5 @@
 
-## 파일 구조 
+## Structure
 
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="Structure.png"><br/>
 
