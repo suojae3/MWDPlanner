@@ -8,21 +8,23 @@ MyPlanner App <br/>
 │
 ├── Application(p.list, assets etc)
 │
-├── Presentation 
+├── View
 │   │    
 │   ├── MainTabBarController 
-│   ├── Monthly 
-│   │        ├── MonthlyViewController 
-│   │        └── MonthlyViewModel
-│   ├── Weekly
-│   │       ├── WeeklyViewController 
-│   │       └── WeeklyViewModel
-│   └── Daily 
-│           ├── DaillyViewController 
-│           └── DailyViewModel
-│   
-├── Domain
-│  
+│   ├── MonthlyViewController 
+│   ├── WeeklyViewController
+│   ├── DailyViewController             
+│   └── SharedComponent 
+│
+├── Model
+│   │
+│   ├── SharedModel 
+│   ├── MonthlyModel
+│   ├── WeeklyModel
+│   └── DailyModel     
+│
+├── CRUD 
+│
 └── Data 
      │ 
      └── DataSource
