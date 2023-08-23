@@ -7,7 +7,13 @@
 
 import UIKit
 
-class SharedModule {
+
+
+//MARK: Instantiation
+class SharedComponent {
+    
+    private let sharedModel = SharedModel()
+    
     
     let tasksTableView: UITableView = {
         let tableView = UITableView()
@@ -25,14 +31,13 @@ class SharedModule {
 
 }
 
-extension SharedModule {
+
+//MARK: Shared Model
+extension SharedComponent {
     
     func addTask() {
-        print("addTask 테스트")
+        sharedModel.addTask()
     }
-    
-    
-    
 }
 
 

@@ -8,25 +8,19 @@
 import UIKit
 
 
+
+//MARK: Instantiation
+
 class MonthlyModule {
     
-    let profileView: UIView = {
-           let view = UIView()
-           view.backgroundColor = .lightGray
-           return view
-       }()
-       
-    let searchBar: UISearchBar = {
-           let searchBar = UISearchBar()
-           return searchBar
-       }()
-       
-       let calendarView: UIView = {
-           let view = UIView()
-           view.backgroundColor = .black
-           return view
-       }()
+
+}
+
+
+
+//MARK: Model
+
+extension MonthlyModule {
     
-
-
+    
 }
