@@ -4,9 +4,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="Structure.png"><br/>
 
 <pre>
-MyPlanner App <br/>
-│
-├── Application(p.list, assets etc)
+Planner App <br/>
 │
 ├── View
 │   │    
