@@ -10,4 +10,9 @@ import Foundation
 
 class AddTaskModel {
     
+    
+    @objc func saveButtonTapped() {
+        print("savebuttonTapped")
+        
+    }
 }

@@ -114,7 +114,7 @@ extension MonthlyView {
 //MARK: 프로토콜 - 델리게이트 패턴 구현
 extension MonthlyView: FloatingButtonModelDelegate {
     func showAddTaskActionSheet() {
-        let addTaskSheet = AddTaskActionSheet()
+        let addTaskSheet = AddTaskActionSheet(model: AddTaskModel())
         present(addTaskSheet, animated: true, completion: nil)
     }
 }
