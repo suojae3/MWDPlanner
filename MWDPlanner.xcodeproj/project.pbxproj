@@ -90,8 +90,7 @@
 				08994E482A95793800964768 /* Shared */,
 				08994E492A95794100964768 /* Monthly */,
 				08994E4E2A95796A00964768 /* Weekly */,
-				08994E4F2A95797100964768 /* Daily */,
-				08994E4A2A95795700964768 /* DailyModule.swift */,
+				08994E572A959E0800964768 /* Daily */,
 			);
 			path = Module;
 			sourceTree = "<group>";
@@ -140,19 +139,20 @@
 			path = Weekly;
 			sourceTree = "<group>";
 		};
-		08994E4F2A95797100964768 /* Daily */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Daily;
-			sourceTree = "<group>";
-		};
 		08994E502A95798900964768 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				08994E532A958E7400964768 /* CRUDmodel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		08994E572A959E0800964768 /* Daily */ = {
+			isa = PBXGroup;
+			children = (
+				08994E4A2A95795700964768 /* DailyModule.swift */,
+			);
+			path = Daily;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
