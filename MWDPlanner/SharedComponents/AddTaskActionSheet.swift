@@ -2,12 +2,11 @@ import UIKit
 
 class AddTaskActionSheet: UIViewController {
     
-    let model: AddTaskSheetModel
-    let saveButton: UIButton = UIButton(type: .roundedRect)
+    private let model: AddTaskSheetModel
+    private let saveButton: UIButton = UIButton(type: .roundedRect)
     weak var delegate: SaveButtonDelegate?
     
-    
-    
+
     init(model: AddTaskSheetModel) {
         self.model = model
         super.init(nibName: nil, bundle: nil)
@@ -18,7 +17,7 @@ class AddTaskActionSheet: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    let titleLabel: UILabel = {
+    private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Add Task"
         label.font = UIFont.boldSystemFont(ofSize: 24)
@@ -26,20 +25,20 @@ class AddTaskActionSheet: UIViewController {
         return label
     }()
     
-    let titleTextField: UITextField = {
+    private let titleTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Task Title"
         textField.borderStyle = .roundedRect
         return textField
     }()
     
-    let datePicker: UIDatePicker = {
+    private let datePicker: UIDatePicker = {
         let picker = UIDatePicker()
         picker.datePickerMode = .dateAndTime
         return picker
     }()
     
-    let descriptionTextView: UITextView = {
+    private let descriptionTextView: UITextView = {
         let textView = UITextView()
         textView.layer.borderColor = UIColor.lightGray.cgColor
         textView.layer.borderWidth = 1.0
@@ -54,8 +53,6 @@ class AddTaskActionSheet: UIViewController {
         saveButton.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         saveButton.addTarget(model, action: #selector(model.saveButtonTapped), for: .touchUpInside)
     }
-
-  
 }
 
 

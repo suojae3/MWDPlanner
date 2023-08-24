@@ -13,6 +13,7 @@ import UIKit
 //MARK: Instantiation
 class MonthlyView: UIViewController {
     
+    
     //테이블뷰 인스턴스
     private let taskTableView = TaskTableView(taskTableViewModel: TaskTableViewModel(), addTaskSheetModel: AddTaskSheetModel())
     
@@ -24,23 +25,22 @@ class MonthlyView: UIViewController {
     
 
     //컴포넌트
-    let profileView: UIView = {
+    private let profileView: UIView = {
            let view = UIView()
            view.backgroundColor = .lightGray
            return view
        }()
        
-    let searchBar: UISearchBar = {
+    private let searchBar: UISearchBar = {
            let searchBar = UISearchBar()
            return searchBar
        }()
        
-       let calendarView: UIView = {
+    private let calendarView: UIView = {
            let view = UIView()
            view.backgroundColor = .black
            return view
        }()
-
 }
 
 

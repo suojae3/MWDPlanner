@@ -7,7 +7,6 @@ class TaskTableView: NSObject {
     var taskTableViewModel: TaskTableViewModel
     var addTaskSheetMdoel: AddTaskSheetModel
 
-    
     // task를 나타낼 테이블 뷰 정의하기
     let tasksTableView: UITableView = {
         let tableView = UITableView()
@@ -17,20 +16,20 @@ class TaskTableView: NSObject {
         return tableView
     }()
     
-    // 데이터 source와 delegate 생성하기
     init(taskTableViewModel: TaskTableViewModel, addTaskSheetModel: AddTaskSheetModel) {
+        
+        // 모델과 연결
          self.taskTableViewModel = taskTableViewModel
+        
+        // 테이블뷰 task 즉시 추가 델리게이트 패턴
          self.addTaskSheetMdoel = addTaskSheetModel
-         
-         
+        
+        //테이블뷰 필수 구현 델리게이트
          super.init()
          tasksTableView.dataSource = self
          tasksTableView.delegate = self
-         
-         addTaskSheetMdoel.createTaskDelegate = self
      }
 }
-
 
 
 extension TaskTableView: UITableViewDataSource, UITableViewDelegate {
@@ -55,9 +54,13 @@ extension TaskTableView: UITableViewDataSource, UITableViewDelegate {
 
 extension TaskTableView: CreateTaskDelegate {
     func createTask() {
+        
+        print("테스트해보자")
         let newRow = taskTableViewModel.taskCount() - 1
         let newIndexPath = IndexPath(row: newRow, section: 0)
         self.tasksTableView.insertRows(at: [newIndexPath], with: .fade)
     }
 }
+
+
 

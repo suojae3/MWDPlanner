@@ -16,8 +16,6 @@ protocol SaveButtonDelegate: AnyObject {
     func dismissSheet()
 }
                                 
-
-
 class AddTaskSheetModel {
     
     //델리게이트 패턴
@@ -38,6 +36,7 @@ class AddTaskSheetModel {
             
             // 테이블뷰 task 바로 생성
             createTaskDelegate?.createTask()
+            print(createTaskDelegate)
             print("Task saved successfully!")
             saveTaskDelegate?.dismissSheet()
         } else {
