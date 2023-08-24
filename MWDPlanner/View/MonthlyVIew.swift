@@ -80,13 +80,13 @@ extension MonthlyView: FloatingButtonModelDelegate {
 //MARK: SetUpUI
 extension MonthlyView {
     
-    func setUpUI() {
+     private func setUpUI() {
         
-            view.addSubview(self.profileView)
-            view.addSubview(self.searchBar)
-            view.addSubview(self.calendarView)
+        view.addSubview(self.profileView)
+        view.addSubview(self.searchBar)
+        view.addSubview(self.calendarView)
         view.addSubview(self.taskTableView.tasksTableView)
-            view.addSubview(floatingButton.floatingButton)
+        view.addSubview(floatingButton.floatingButton)
 
         // AutoResizeMask 끄기
         self.profileView.translatesAutoresizingMaskIntoConstraints = false

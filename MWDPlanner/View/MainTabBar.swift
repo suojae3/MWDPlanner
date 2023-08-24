@@ -9,13 +9,13 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
         
         let monthlyVC = MonthlyView()
-        monthlyVC.tabBarItem = UITabBarItem(title: "Scene 1", image: nil,  tag: 0)
+        monthlyVC.tabBarItem = UITabBarItem(title: "Monthly", image: nil,  tag: 0)
         
         let weeklyVC = WeeklyView()
-        weeklyVC.tabBarItem = UITabBarItem(title: "Scene 2", image: nil, tag: 1)
+        weeklyVC.tabBarItem = UITabBarItem(title: "Weekly", image: nil, tag: 1)
         
         let dailyVC = DailyView()
-        dailyVC.tabBarItem = UITabBarItem(title: "Scene 3", image: nil, tag: 2)
+        dailyVC.tabBarItem = UITabBarItem(title: "Daily", image: nil, tag: 2)
         
         self.viewControllers = [monthlyVC, weeklyVC, dailyVC]
         

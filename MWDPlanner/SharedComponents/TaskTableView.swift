@@ -4,14 +4,18 @@ import UIKit
 // UITableView의 display와 manage를 책임지는 클래스
 class TaskTableView: NSObject {
     
-    var taskTableViewModel: TaskTableViewModel
-    var addTaskSheetMdoel: AddTaskSheetModel
+    weak var createTaskDelegate: CreateTaskDelegate?
+    let addTaskSheetModel = AddTaskSheetModel()
+    let taskTableViewModel: TaskTableViewModel
 
+    
+    
     // task를 나타낼 테이블 뷰 정의하기
-    let tasksTableView: UITableView = {
+     let tasksTableView: UITableView = {
+         
+         
+         //테이블 뷰의 기본 셀 등록하기
         let tableView = UITableView()
-        
-        //테이블 뷰의 기본 셀 등록하기
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "TaskCell")
         return tableView
     }()
@@ -21,13 +25,14 @@ class TaskTableView: NSObject {
         // 모델과 연결
          self.taskTableViewModel = taskTableViewModel
         
-        // 테이블뷰 task 즉시 추가 델리게이트 패턴
-         self.addTaskSheetMdoel = addTaskSheetModel
-        
+                    
         //테이블뷰 필수 구현 델리게이트
          super.init()
          tasksTableView.dataSource = self
          tasksTableView.delegate = self
+        
+        
+        addTaskSheetModel.createTaskDelegate = self
      }
 }
 

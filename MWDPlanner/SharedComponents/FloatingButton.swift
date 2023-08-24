@@ -7,8 +7,8 @@ import UIKit
 //MARK: Instantiation
 
 class FloatingButton {
-    let model: FloatingButtonModel
-    let floatingButton: UIButton = UIButton(type: .system)
+     let model: FloatingButtonModel
+     let floatingButton: UIButton = UIButton(type: .system)
 
     init(model: FloatingButtonModel) {
         self.model = model
