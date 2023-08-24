@@ -14,9 +14,13 @@ import UIKit
 class MonthlyView: UIViewController {
 
     private let taskTableView = TaskTableView()
+    let viewModel = TaskTableViewModel()
+
+    
     private let floatingButton = FloatingButton(model: FloatingButtonModel())
     weak var delegate: FloatingButtonModelDelegate?
     
+
     
     //컴포넌트
     let profileView: UIView = {
@@ -35,6 +39,10 @@ class MonthlyView: UIViewController {
            view.backgroundColor = .black
            return view
        }()
+    
+    // Inside the viewDidLoad method:
+    let taskService = TaskService()
+
 }
 
 
@@ -46,6 +54,10 @@ extension MonthlyView {
         view.backgroundColor = .white
         setUpUI()
         floatingButton.model.delegate = self
+        
+        //테이블뷰
+        taskTableView.viewModel = viewModel
+        taskTableView.tasksTableView.frame = view.bounds
 
     }
 }
@@ -118,6 +130,5 @@ extension MonthlyView: FloatingButtonModelDelegate {
         present(addTaskSheet, animated: true, completion: nil)
     }
 }
-
 
 
