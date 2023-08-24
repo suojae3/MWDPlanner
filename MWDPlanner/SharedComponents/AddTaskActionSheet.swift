@@ -4,6 +4,9 @@ class AddTaskActionSheet: UIViewController {
     
     let model: AddTaskModel
     let saveButton: UIButton = UIButton(type: .roundedRect)
+    weak var delegate: SaveButtonDelegate?
+    
+    
     
     init(model: AddTaskModel) {
         self.model = model
@@ -57,6 +60,27 @@ class AddTaskActionSheet: UIViewController {
 }
 
 
+
+extension AddTaskActionSheet {
+
+    func setupModel() {
+        model.provideTaskDetails = { [weak self] in
+            guard let self = self else { return nil }
+            
+            // Extract details from UI components.
+            guard let title = self.titleTextField.text, !title.isEmpty,
+                  let description = self.descriptionTextView.text, !description.isEmpty else {
+                return nil
+            }
+            
+            let dueDate = self.datePicker.date
+            
+            // Return a new Task object.
+            return Task(title: title, dueDate: dueDate, description: description)
+        }
+    }
+}
+
 //MARK: LifeCycle
 
 extension AddTaskActionSheet {
@@ -64,7 +88,9 @@ extension AddTaskActionSheet {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        
+        setupModel()
+        model.delegate = self
+
 
     }
 
@@ -119,3 +145,8 @@ extension AddTaskActionSheet {
 }
 
 
+extension AddTaskActionSheet: SaveButtonDelegate {
+    func dismissSheet() {
+        dismiss(animated: true)
+    }
+}

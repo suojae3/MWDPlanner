@@ -15,7 +15,8 @@ class TaskTableView: NSObject {
     
     // 논리가 담겨있는 TaskTableViewModel 참조하기(가져오기)
     var viewModel: TaskTableViewModel!
-
+    
+    
     // 데이터 source와 delegate 생성하기
     override init() {
         super.init()
@@ -35,6 +36,7 @@ extension TaskTableView: UITableViewDataSource, UITableViewDelegate {
     
     // task 보여주는 cell 구현
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath)
         let task = viewModel.task(at: indexPath.row)
         cell.textLabel?.text = task.title

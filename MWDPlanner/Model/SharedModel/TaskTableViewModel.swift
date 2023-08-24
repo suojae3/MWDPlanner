@@ -5,7 +5,6 @@ import Foundation
 class TaskTableViewModel {
     
     private var tasks: [Task] = []
-    
     // task개수
     func numberOfTasks() -> Int {
         return tasks.count
@@ -15,5 +14,4 @@ class TaskTableViewModel {
     func task(at index: Int) -> Task {
         return tasks[index]
     }
-    
 }

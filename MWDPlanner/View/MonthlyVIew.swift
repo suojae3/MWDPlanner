@@ -58,7 +58,10 @@ extension MonthlyView {
         //테이블뷰
         taskTableView.viewModel = viewModel
         taskTableView.tasksTableView.frame = view.bounds
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        taskTableView.tasksTableView.reloadData()
     }
 }
 
