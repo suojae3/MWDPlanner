@@ -61,6 +61,8 @@ extension MonthlyView {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        taskTableView.viewModel.fetchTasks()
         taskTableView.tasksTableView.reloadData()
     }
 }

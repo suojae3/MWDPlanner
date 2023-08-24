@@ -4,14 +4,21 @@ import Foundation
 
 class TaskTableViewModel {
     
+
+    private let taskService = TaskService()
     private var tasks: [Task] = []
-    // task개수
-    func numberOfTasks() -> Int {
+    
+    func fetchTasks() {
+        tasks = taskService.fetchTasks()
+    }
+    
+    func taskCount() -> Int {
         return tasks.count
     }
     
-    // 특정 task 인덱스 가져오기
     func task(at index: Int) -> Task {
         return tasks[index]
     }
 }
+
+

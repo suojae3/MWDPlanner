@@ -89,7 +89,7 @@ extension AddTaskActionSheet {
         super.viewDidLoad()
         setupUI()
         setupModel()
-        model.delegate = self
+        model.saveTaskDelegate = self
 
 
     }

@@ -8,13 +8,16 @@
 protocol SaveButtonDelegate: AnyObject {
     func dismissSheet()
 }
+
+
                                 
 
 import Foundation
 
 class AddTaskModel {
     
-    weak var delegate: SaveButtonDelegate?
+    weak var saveTaskDelegate: SaveButtonDelegate?
+    
     
     let taskService = TaskService()
     
@@ -28,7 +31,7 @@ class AddTaskModel {
         } else {
             print("Failed to gather task details!")
         }
-        delegate?.dismissSheet()
+        saveTaskDelegate?.dismissSheet()
     }
 }
 
