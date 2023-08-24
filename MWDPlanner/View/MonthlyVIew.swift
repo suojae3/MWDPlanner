@@ -14,9 +14,13 @@ import UIKit
 class MonthlyView: UIViewController {
 
     private let taskTableView = TaskTableView()
+    let viewModel = TaskTableViewModel()
+
+    
     private let floatingButton = FloatingButton(model: FloatingButtonModel())
     weak var delegate: FloatingButtonModelDelegate?
     
+
     
     //컴포넌트
     let profileView: UIView = {
@@ -35,6 +39,10 @@ class MonthlyView: UIViewController {
            view.backgroundColor = .black
            return view
        }()
+    
+    // Inside the viewDidLoad method:
+    let taskService = TaskService()
+
 }
 
 
@@ -46,7 +54,16 @@ extension MonthlyView {
         view.backgroundColor = .white
         setUpUI()
         floatingButton.model.delegate = self
-
+        
+        //테이블뷰
+        taskTableView.viewModel = viewModel
+        taskTableView.tasksTableView.frame = view.bounds
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        taskTableView.viewModel.fetchTasks()
+        taskTableView.tasksTableView.reloadData()
     }
 }
 
@@ -114,10 +131,9 @@ extension MonthlyView {
 //MARK: 프로토콜 - 델리게이트 패턴 구현
 extension MonthlyView: FloatingButtonModelDelegate {
     func showAddTaskActionSheet() {
-        let addTaskSheet = AddTaskActionSheet()
+        let addTaskSheet = AddTaskActionSheet(model: AddTaskModel())
         present(addTaskSheet, animated: true, completion: nil)
     }
 }
-
 
 

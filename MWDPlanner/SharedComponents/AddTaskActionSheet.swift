@@ -2,15 +2,21 @@ import UIKit
 
 class AddTaskActionSheet: UIViewController {
     
-//    let model: AddTaskModel
-//    
-//    init(model: AddTaskModel) {
-//        self.model = model
-//    }
-//    
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
+    let model: AddTaskModel
+    let saveButton: UIButton = UIButton(type: .roundedRect)
+    weak var delegate: SaveButtonDelegate?
+    
+    
+    
+    init(model: AddTaskModel) {
+        self.model = model
+        super.init(nibName: nil, bundle: nil)
+        configureSaveButton()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     
     let titleLabel: UILabel = {
@@ -42,19 +48,38 @@ class AddTaskActionSheet: UIViewController {
         return textView
     }()
     
-    let saveButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Save", for: .normal)
-        button.addTarget(AddTaskActionSheet.self, action: #selector(saveButtonTapped), for: .touchUpInside)
-        return button
-    }()
-
     
-    @objc func saveButtonTapped() {
-        print("saveButtonTapped")
+    private func configureSaveButton() {
+        saveButton.backgroundColor = .blue
+        saveButton.setTitle("Save", for: .normal)
+        saveButton.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        saveButton.addTarget(model, action: #selector(model.saveButtonTapped), for: .touchUpInside)
     }
+
+  
 }
 
+
+
+extension AddTaskActionSheet {
+
+    func setupModel() {
+        model.provideTaskDetails = { [weak self] in
+            guard let self = self else { return nil }
+            
+            // Extract details from UI components.
+            guard let title = self.titleTextField.text, !title.isEmpty,
+                  let description = self.descriptionTextView.text, !description.isEmpty else {
+                return nil
+            }
+            
+            let dueDate = self.datePicker.date
+            
+            // Return a new Task object.
+            return Task(title: title, dueDate: dueDate, description: description)
+        }
+    }
+}
 
 //MARK: LifeCycle
 
@@ -63,6 +88,10 @@ extension AddTaskActionSheet {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupModel()
+        model.saveTaskDelegate = self
+
+
     }
 
 }
@@ -76,7 +105,7 @@ extension AddTaskActionSheet {
             view.addSubview(titleTextField)
             view.addSubview(datePicker)
             view.addSubview(descriptionTextView)
-            view.addSubview(saveButton)
+        view.addSubview(self.saveButton)
         
         
         
@@ -116,3 +145,8 @@ extension AddTaskActionSheet {
 }
 
 
+extension AddTaskActionSheet: SaveButtonDelegate {
+    func dismissSheet() {
+        dismiss(animated: true)
+    }
+}
