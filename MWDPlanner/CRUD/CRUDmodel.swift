@@ -27,8 +27,8 @@ class TaskService {
         // fetchTasks()를 통해 기존 데이터 가져오기
         var tasks = fetchTasks()
         
-        // tasks 배열에 새로 받아온 task 추가하기
-        tasks.append(task)
+        // tasks 배열에 새로 받아온 task 첫번째에 insert
+        tasks.insert(task, at: 0)
         
         
         // 이제 다시 encode 해주기

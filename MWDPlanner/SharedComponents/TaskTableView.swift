@@ -4,8 +4,8 @@ import UIKit
 // UITableView의 display와 manage를 책임지는 클래스
 class TaskTableView: NSObject {
     
-    var viewModel: TaskTableViewModel
-    
+    var taskTableViewModel: TaskTableViewModel
+    var addTaskSheetMdoel: AddTaskSheetModel
 
     
     // task를 나타낼 테이블 뷰 정의하기
@@ -18,11 +18,16 @@ class TaskTableView: NSObject {
     }()
     
     // 데이터 source와 delegate 생성하기
-     init(viewModel: TaskTableViewModel) {
-         self.viewModel = viewModel
+    init(taskTableViewModel: TaskTableViewModel, addTaskSheetModel: AddTaskSheetModel) {
+         self.taskTableViewModel = taskTableViewModel
+         self.addTaskSheetMdoel = addTaskSheetModel
+         
+         
          super.init()
          tasksTableView.dataSource = self
          tasksTableView.delegate = self
+         
+         addTaskSheetMdoel.createTaskDelegate = self
      }
 }
 
@@ -32,7 +37,7 @@ extension TaskTableView: UITableViewDataSource, UITableViewDelegate {
     
     // task 개수
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.taskCount()
+        return taskTableViewModel.taskCount()
 
     }
     
@@ -40,8 +45,19 @@ extension TaskTableView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath)
-        let task = viewModel.task(at: indexPath.row)
+        let task = taskTableViewModel.task(at: indexPath.row)
         cell.textLabel?.text = task.title
         return cell
+        
     }
 }
+
+
+extension TaskTableView: CreateTaskDelegate {
+    func createTask() {
+        let newRow = taskTableViewModel.taskCount() - 1
+        let newIndexPath = IndexPath(row: newRow, section: 0)
+        self.tasksTableView.insertRows(at: [newIndexPath], with: .fade)
+    }
+}
+

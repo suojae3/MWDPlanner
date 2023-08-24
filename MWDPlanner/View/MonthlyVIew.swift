@@ -12,16 +12,17 @@ import UIKit
 
 //MARK: Instantiation
 class MonthlyView: UIViewController {
-
-    private let taskTableView = TaskTableView(viewModel: TaskTableViewModel())
-    let viewModel = TaskTableViewModel()
-
     
+    //테이블뷰 인스턴스
+    private let taskTableView = TaskTableView(taskTableViewModel: TaskTableViewModel(), addTaskSheetModel: AddTaskSheetModel())
+    
+    // 플로팅 버튼 인스턴스
     private let floatingButton = FloatingButton(model: FloatingButtonModel())
+    
+    // 플로팅 버튼 델리게이트 패턴(화면전환 - ActionSheet)
     weak var delegate: FloatingButtonModelDelegate?
     
 
-    
     //컴포넌트
     let profileView: UIView = {
            let view = UIView()
@@ -39,9 +40,6 @@ class MonthlyView: UIViewController {
            view.backgroundColor = .black
            return view
        }()
-    
-    // Inside the viewDidLoad method:
-    let taskService = TaskService()
 
 }
 
@@ -52,17 +50,29 @@ extension MonthlyView {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        setUpUI()
-        floatingButton.model.delegate = self
         
-        //테이블뷰
-        taskTableView.viewModel = viewModel
-        taskTableView.tasksTableView.frame = view.bounds
+        // 컴포넌트 constraints
+        setUpUI()
+        
+        // 플로팅 버튼 델리게이트 패턴(화면전환 - ActionSheet)
+        floatingButton.model.delegate = self
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        //테이블뷰 데이터 업데이트
         taskTableView.tasksTableView.reloadData()
+    }
+}
+
+
+//MARK: 프로토콜 - 델리게이트 패턴 구현
+extension MonthlyView: FloatingButtonModelDelegate {
+    func showAddTaskActionSheet() {
+        let addTaskSheet = AddTaskActionSheet(model: AddTaskSheetModel())
+        present(addTaskSheet, animated: true, completion: nil)
     }
 }
 
@@ -127,12 +137,6 @@ extension MonthlyView {
 }
 
 
-//MARK: 프로토콜 - 델리게이트 패턴 구현
-extension MonthlyView: FloatingButtonModelDelegate {
-    func showAddTaskActionSheet() {
-        let addTaskSheet = AddTaskActionSheet(model: AddTaskModel())
-        present(addTaskSheet, animated: true, completion: nil)
-    }
-}
+
 
 

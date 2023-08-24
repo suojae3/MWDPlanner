@@ -7,10 +7,12 @@
 
 import Foundation
 
-
+// 메인뷰컨에서 actionsheet 띄우기 delegate
 protocol FloatingButtonModelDelegate: AnyObject {
     func showAddTaskActionSheet()
 }
+
+
 
 class FloatingButtonModel {
     
@@ -18,6 +20,8 @@ class FloatingButtonModel {
 
     @objc func buttonTapped() {
         print("buttonTapped")
+        
+        // 메인뷰컨에서 actionsheet 띄우기 delegate
         delegate?.showAddTaskActionSheet()
     }
 }

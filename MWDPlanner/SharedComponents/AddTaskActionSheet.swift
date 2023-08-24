@@ -2,13 +2,13 @@ import UIKit
 
 class AddTaskActionSheet: UIViewController {
     
-    let model: AddTaskModel
+    let model: AddTaskSheetModel
     let saveButton: UIButton = UIButton(type: .roundedRect)
     weak var delegate: SaveButtonDelegate?
     
     
     
-    init(model: AddTaskModel) {
+    init(model: AddTaskSheetModel) {
         self.model = model
         super.init(nibName: nil, bundle: nil)
         configureSaveButton()
@@ -59,22 +59,19 @@ class AddTaskActionSheet: UIViewController {
 }
 
 
-
+// 사용자 입력값 Task 형식으로 묶어주기
 extension AddTaskActionSheet {
 
     func setupModel() {
         model.provideTaskDetails = { [weak self] in
             guard let self = self else { return nil }
             
-            // Extract details from UI components.
             guard let title = self.titleTextField.text, !title.isEmpty,
                   let description = self.descriptionTextView.text, !description.isEmpty else {
                 return nil
             }
             
             let dueDate = self.datePicker.date
-            
-            // Return a new Task object.
             return Task(title: title, dueDate: dueDate, description: description)
         }
     }
@@ -90,11 +87,15 @@ extension AddTaskActionSheet {
         setupModel()
         model.saveTaskDelegate = self
 
-
     }
-
 }
 
+// dismiss 델리게이트
+extension AddTaskActionSheet: SaveButtonDelegate {
+    func dismissSheet() {
+        dismiss(animated: true)
+    }
+}
 
 extension AddTaskActionSheet {
     func setupUI() {
@@ -104,9 +105,7 @@ extension AddTaskActionSheet {
             view.addSubview(titleTextField)
             view.addSubview(datePicker)
             view.addSubview(descriptionTextView)
-        view.addSubview(self.saveButton)
-        
-        
+            view.addSubview(self.saveButton)
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -143,9 +142,3 @@ extension AddTaskActionSheet {
 
 }
 
-
-extension AddTaskActionSheet: SaveButtonDelegate {
-    func dismissSheet() {
-        dismiss(animated: true)
-    }
-}
