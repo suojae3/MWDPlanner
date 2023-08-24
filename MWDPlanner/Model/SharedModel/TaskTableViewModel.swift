@@ -4,7 +4,6 @@ import Foundation
 
 class TaskTableViewModel {
     
-
     private let taskService = TaskService()
     private var tasks: [Task] = []
     
@@ -13,10 +12,12 @@ class TaskTableViewModel {
     }
     
     func taskCount() -> Int {
+        self.fetchTasks()
         return tasks.count
     }
     
     func task(at index: Int) -> Task {
+        self.fetchTasks()
         return tasks[index]
     }
 }

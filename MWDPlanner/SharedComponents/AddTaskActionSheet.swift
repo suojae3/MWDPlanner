@@ -18,7 +18,6 @@ class AddTaskActionSheet: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Add Task"

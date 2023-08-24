@@ -4,7 +4,8 @@ import UIKit
 // UITableView의 display와 manage를 책임지는 클래스
 class TaskTableView: NSObject {
     
-    var viewModel: TaskTableViewModel!
+    var viewModel: TaskTableViewModel
+    
 
     
     // task를 나타낼 테이블 뷰 정의하기
@@ -16,14 +17,13 @@ class TaskTableView: NSObject {
         return tableView
     }()
     
-    
-    
     // 데이터 source와 delegate 생성하기
-    override init() {
-        super.init()
-        tasksTableView.dataSource = self
-        tasksTableView.delegate = self
-    }
+     init(viewModel: TaskTableViewModel) {
+         self.viewModel = viewModel
+         super.init()
+         tasksTableView.dataSource = self
+         tasksTableView.delegate = self
+     }
 }
 
 

@@ -13,7 +13,7 @@ import UIKit
 //MARK: Instantiation
 class MonthlyView: UIViewController {
 
-    private let taskTableView = TaskTableView()
+    private let taskTableView = TaskTableView(viewModel: TaskTableViewModel())
     let viewModel = TaskTableViewModel()
 
     
@@ -62,7 +62,6 @@ extension MonthlyView {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        taskTableView.viewModel.fetchTasks()
         taskTableView.tasksTableView.reloadData()
     }
 }
