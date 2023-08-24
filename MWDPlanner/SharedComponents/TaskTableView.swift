@@ -4,68 +4,32 @@ import UIKit
 // UITableView의 display와 manage를 책임지는 클래스
 class TaskTableView: NSObject {
     
-    weak var createTaskDelegate: CreateTaskDelegate?
-    let addTaskSheetModel = AddTaskSheetModel()
-    let taskTableViewModel: TaskTableViewModel
-
-    
-    
-    // task를 나타낼 테이블 뷰 정의하기
-     let tasksTableView: UITableView = {
-         
-         
-         //테이블 뷰의 기본 셀 등록하기
+    let tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "TaskCell")
         return tableView
     }()
     
-    init(taskTableViewModel: TaskTableViewModel, addTaskSheetModel: AddTaskSheetModel) {
-        
-        // 모델과 연결
-         self.taskTableViewModel = taskTableViewModel
-        
-                    
-        //테이블뷰 필수 구현 델리게이트
-         super.init()
-         tasksTableView.dataSource = self
-         tasksTableView.delegate = self
-        
-        
-        addTaskSheetModel.createTaskDelegate = self
-     }
+    let taskTableViewModel: TaskTableViewModel
+    
+    init(taskTableViewModel: TaskTableViewModel) {
+        self.taskTableViewModel = taskTableViewModel
+        super.init()
+        tableView.dataSource = self
+        tableView.delegate = self
+    }
 }
 
 
 extension TaskTableView: UITableViewDataSource, UITableViewDelegate {
-    
-    // task 개수
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return taskTableViewModel.taskCount()
-
+        taskTableViewModel.numberOfTasks
     }
-    
-    // task 보여주는 cell 구현
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath)
         let task = taskTableViewModel.task(at: indexPath.row)
         cell.textLabel?.text = task.title
         return cell
-        
     }
 }
-
-
-extension TaskTableView: CreateTaskDelegate {
-    func createTask() {
-        
-        print("테스트해보자")
-        let newRow = taskTableViewModel.taskCount() - 1
-        let newIndexPath = IndexPath(row: newRow, section: 0)
-        self.tasksTableView.insertRows(at: [newIndexPath], with: .fade)
-    }
-}
-
-
-

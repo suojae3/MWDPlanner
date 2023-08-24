@@ -4,24 +4,20 @@ import Foundation
 
 
 class TaskTableViewModel {
-    
-    
-    private let taskService = TaskService()
     private var tasks: [Task] = []
     
-     func fetchTasks() {
+    private let taskService: TaskService
+    
+    init(service: TaskService) {
+        self.taskService = service
         tasks = taskService.fetchTasks()
     }
     
-     func taskCount() -> Int {
-        self.fetchTasks()
-        return tasks.count
+    var numberOfTasks: Int {
+        tasks.count
     }
     
-     func task(at index: Int) -> Task {
-        self.fetchTasks()
+    func task(at index: Int) -> Task {
         return tasks[index]
     }
 }
-
-

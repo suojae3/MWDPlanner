@@ -1,14 +1,13 @@
 import UIKit
 
 class AddTaskActionSheet: UIViewController {
-    
-    private let model: AddTaskSheetModel
+    private let taskService: TaskService
     private let saveButton: UIButton = UIButton(type: .roundedRect)
-    weak var delegate: SaveButtonDelegate?
-    
+    private let dismissCallback: () -> Void
 
-    init(model: AddTaskSheetModel) {
-        self.model = model
+    init(taskService: TaskService, dismissCallback: @escaping () -> Void) {
+        self.taskService = taskService
+        self.dismissCallback = dismissCallback
         super.init(nibName: nil, bundle: nil)
         configureSaveButton()
     }
@@ -51,46 +50,30 @@ class AddTaskActionSheet: UIViewController {
         saveButton.backgroundColor = .blue
         saveButton.setTitle("Save", for: .normal)
         saveButton.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-        saveButton.addTarget(model, action: #selector(model.saveButtonTapped), for: .touchUpInside)
+        saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
     }
-}
-
-
-// 사용자 입력값 Task 형식으로 묶어주기
-extension AddTaskActionSheet {
-
-    func setupModel() {
-        model.provideTaskDetails = { [weak self] in
-            guard let self = self else { return nil }
-            
-            guard let title = self.titleTextField.text, !title.isEmpty,
-                  let description = self.descriptionTextView.text, !description.isEmpty else {
-                return nil
-            }
-            
-            let dueDate = self.datePicker.date
-            return Task(title: title, dueDate: dueDate, description: description)
-        }
+    
+    @objc private func saveButtonTapped() {
+        guard
+            let title = titleTextField.text,
+            !title.isEmpty,
+            let description = descriptionTextView.text,
+            !description.isEmpty
+        else { return }
+        
+        let dueDate = self.datePicker.date
+        let newTask = Task(title: title, dueDate: dueDate, description: description)
+        taskService.save(newTask)
+        dismiss(animated: true, completion: dismissCallback)
     }
 }
 
 //MARK: LifeCycle
 
 extension AddTaskActionSheet {
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        setupModel()
-        model.saveTaskDelegate = self
-
-    }
-}
-
-// dismiss 델리게이트
-extension AddTaskActionSheet: SaveButtonDelegate {
-    func dismissSheet() {
-        dismiss(animated: true)
     }
 }
 
