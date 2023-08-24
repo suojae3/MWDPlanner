@@ -6,12 +6,19 @@
 //
 
 import UIKit
-
-
+import FSCalendar
 
 
 //MARK: Instantiation
 class MonthlyView: UIViewController {
+        
+    //달력
+    private let calendarView: FSCalendar = {
+        let calendar = FSCalendar()
+        // Customize your calendar appearance here if needed
+        return calendar
+    }()
+
     
     
     //테이블뷰 인스턴스
@@ -36,11 +43,7 @@ class MonthlyView: UIViewController {
            return searchBar
        }()
        
-    private let calendarView: UIView = {
-           let view = UIView()
-           view.backgroundColor = .black
-           return view
-       }()
+
 }
 
 
@@ -56,6 +59,12 @@ extension MonthlyView {
         
         // 플로팅 버튼 델리게이트 패턴(화면전환 - ActionSheet)
         floatingButton.model.delegate = self
+        
+        //달력 라이브러리
+        calendarView.delegate = self
+        calendarView.dataSource = self
+
+
     }
     
     
@@ -137,6 +146,12 @@ extension MonthlyView {
 }
 
 
-
-
-
+extension MonthlyView: FSCalendarDelegate, FSCalendarDataSource {
+    // Implement delegate and data source methods here
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        // Handle the logic when a date is selected
+        
+    }
+    
+    // Add more methods if needed
+}

@@ -22,6 +22,7 @@
 		08994E5B2A95BCDD00964768 /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08994E5A2A95BCDD00964768 /* FloatingButton.swift */; };
 		08994E5D2A95BE0400964768 /* AddTaskActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08994E5C2A95BE0400964768 /* AddTaskActionSheet.swift */; };
 		08994E602A95EEED00964768 /* AddTaskSheetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08994E5F2A95EEED00964768 /* AddTaskSheetModel.swift */; };
+		6B8B274ED387C510122F10F0 /* Pods_MWDPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2203EF771AAA03FB8D76F582 /* Pods_MWDPlanner.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,9 @@
 		08994E5A2A95BCDD00964768 /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
 		08994E5C2A95BE0400964768 /* AddTaskActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddTaskActionSheet.swift; path = MWDPlanner/SharedComponents/AddTaskActionSheet.swift; sourceTree = SOURCE_ROOT; };
 		08994E5F2A95EEED00964768 /* AddTaskSheetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskSheetModel.swift; sourceTree = "<group>"; };
+		2203EF771AAA03FB8D76F582 /* Pods_MWDPlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MWDPlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		846BDD29F6EA04F10C92D9B4 /* Pods-MWDPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MWDPlanner.release.xcconfig"; path = "Target Support Files/Pods-MWDPlanner/Pods-MWDPlanner.release.xcconfig"; sourceTree = "<group>"; };
+		B5DC3EB29FABBBFDB64DE6DB /* Pods-MWDPlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MWDPlanner.debug.xcconfig"; path = "Target Support Files/Pods-MWDPlanner/Pods-MWDPlanner.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B8B274ED387C510122F10F0 /* Pods_MWDPlanner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +65,8 @@
 			children = (
 				08994E222A94F53800964768 /* MWDPlanner */,
 				08994E212A94F53800964768 /* Products */,
+				9738472DEE158DA3F26B29C2 /* Pods */,
+				DB0D07CD3B8CDA5793B8A992 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -142,6 +149,24 @@
 			path = SharedModel;
 			sourceTree = "<group>";
 		};
+		9738472DEE158DA3F26B29C2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B5DC3EB29FABBBFDB64DE6DB /* Pods-MWDPlanner.debug.xcconfig */,
+				846BDD29F6EA04F10C92D9B4 /* Pods-MWDPlanner.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		DB0D07CD3B8CDA5793B8A992 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2203EF771AAA03FB8D76F582 /* Pods_MWDPlanner.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -149,9 +174,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 08994E342A94F53A00964768 /* Build configuration list for PBXNativeTarget "MWDPlanner" */;
 			buildPhases = (
+				F81E329A5755A9732223E44E /* [CP] Check Pods Manifest.lock */,
 				08994E1C2A94F53800964768 /* Sources */,
 				08994E1D2A94F53800964768 /* Frameworks */,
 				08994E1E2A94F53800964768 /* Resources */,
+				C14C21A4C442694984BF099A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -205,6 +232,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C14C21A4C442694984BF099A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MWDPlanner/Pods-MWDPlanner-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MWDPlanner/Pods-MWDPlanner-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MWDPlanner/Pods-MWDPlanner-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F81E329A5755A9732223E44E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MWDPlanner-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		08994E1C2A94F53800964768 /* Sources */ = {
@@ -347,6 +416,7 @@
 		};
 		08994E352A94F53A00964768 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B5DC3EB29FABBBFDB64DE6DB /* Pods-MWDPlanner.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -373,6 +443,7 @@
 		};
 		08994E362A94F53A00964768 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 846BDD29F6EA04F10C92D9B4 /* Pods-MWDPlanner.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
