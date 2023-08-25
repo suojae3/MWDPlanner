@@ -10,17 +10,25 @@ class TaskService {
     
     static let shared = TaskService()
     
+    
+    // 파라미터에는 넘겨줄 값을 넣어주기
+    var fetchCompletion: (([Task]) -> Void)?
+    
     private init() {}
     
+    // MARK: 1
     //UserDefaults로 부터 Task 객체 배열 가져오기 - 입력
     func fetchTasks() -> [Task] {
         //UserDefaults내 주어진 키에 해당하는 데이터 확인하기
         if let data = UserDefaults.standard.data(forKey: tasksKey),
+           
             // Task 객체배열로 decode하기
            let tasks = try? JSONDecoder().decode([Task].self, from: data) {
+            
             // decode가 완요되면 task를 리턴하기 - 출력
             return tasks
         }
+        
         // 만약 가져온 데이터가 비어있거나 디코딩에 실패한다면 빈배열 리턴하기 - 출력
         return []
     }
@@ -37,6 +45,9 @@ class TaskService {
         if let data = try? JSONEncoder().encode(tasks) {
             // encode가 성공했다면 UserDefaults에 넣어주기
             UserDefaults.standard.set(data, forKey: tasksKey)
+            
+            //MARK: 3
+            self.fetchCompletion?(tasks)
         }
     }
 }

@@ -23,12 +23,14 @@ class TaskTableView: NSObject {
 
 extension TaskTableView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         taskTableViewModel.numberOfTasks
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath)
         let task = taskTableViewModel.task(at: indexPath.row)
+        print(task.title)
         cell.textLabel?.text = task.title
         return cell
     }

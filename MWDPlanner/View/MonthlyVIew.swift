@@ -9,8 +9,11 @@ import UIKit
 import FSCalendar
 
 
+// UIComponent랑 변수명 맞추기
+
 //MARK: Instantiation
 class MonthlyView: UIViewController {
+    
     
     private lazy var taskService = TaskService.shared
         
@@ -62,6 +65,17 @@ extension MonthlyView {
         //달력 라이브러리
         calendarView.delegate = self
         calendarView.dataSource = self
+        
+        
+        taskTableView.tableView.reloadData()
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //fullScreen 이 떠야 viewWillAppear가 실행됨!
+        print("ViewWillAppear")
         taskTableView.tableView.reloadData()
     }
 }
@@ -72,7 +86,12 @@ extension MonthlyView: FloatingButtonModelDelegate {
     func showAddTaskActionSheet() {
         let addTaskSheet = AddTaskActionSheet(taskService: taskService) { [weak self] in
             guard let self else { return }
-            taskTableView.tableView.reloadData()
+            taskService.fetchTasks()
+                .forEach { task in
+//                    print(task.title)
+                }
+                self.taskTableView.tableView.reloadData()
+            
         }
         present(addTaskSheet, animated: true, completion: nil)
     }
