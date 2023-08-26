@@ -14,32 +14,21 @@ import FSCalendar
 //MARK: Instantiation
 class MonthlyView: UIViewController {
     
-    
     private lazy var taskService = TaskService.shared
-        
-    //달력
-    private let calendarView: FSCalendar = {
-        let calendar = FSCalendar()
-        return calendar
-    }()
-    
-    //테이블뷰 인스턴스
     private lazy var taskTableView = TaskTableView(service: taskService)
-    
-    // 플로팅 버튼 인스턴스
     private let floatingButton = FloatingButton()
-    
-    // 플로팅 버튼 델리게이트 패턴(화면전환 - ActionSheet)
-    weak var delegate: FloatingButtonModelDelegate?
-    
 
-    //컴포넌트
     private let profileView: UIView = {
            let view = UIView()
            view.backgroundColor = .lightGray
            return view
        }()
-       
+    
+    private let calendarView: FSCalendar = {
+        let calendar = FSCalendar()
+        return calendar
+    }()
+    
     private let searchBar: UISearchBar = {
            let searchBar = UISearchBar()
             searchBar.placeholder = "할 일을 검색해보세요"
@@ -47,7 +36,10 @@ class MonthlyView: UIViewController {
 
            return searchBar
        }()
-       
+    
+    //플로팅 버튼 화면전환
+    weak var floatingButtonDelegate: FloatingButtonDelegate?
+        
 
 }
 
@@ -55,26 +47,17 @@ class MonthlyView: UIViewController {
 extension MonthlyView {
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        
-        // 컴포넌트 constraints
         setUpUI()
-        
-        // 플로팅 버튼 델리게이트 패턴(화면전환 - ActionSheet)
+        taskTableView.tableView.reloadData()
         floatingButton.delegate = self
-        
-        //달력 라이브러리
         calendarView.delegate = self
         calendarView.dataSource = self
-        
-        
-        taskTableView.tableView.reloadData()
     }
 }
 
 
 //MARK: 프로토콜 - 델리게이트 패턴 구현
-extension MonthlyView: FloatingButtonModelDelegate {
+extension MonthlyView: FloatingButtonDelegate {
     func showAddTaskActionSheet() {
         let addTaskSheet = AddTaskActionSheet(taskService: taskService) { [weak self] in
             guard let self else { return }
@@ -91,7 +74,7 @@ extension MonthlyView: FloatingButtonModelDelegate {
 //MARK: SetUpUI
 extension MonthlyView {
      private func setUpUI() {
-         
+        view.backgroundColor = .white
         view.addSubview(self.profileView)
         view.addSubview(self.searchBar)
         view.addSubview(self.calendarView)
