@@ -52,20 +52,45 @@ extension MonthlyView {
         floatingButton.delegate = self
         calendarView.delegate = self
         calendarView.dataSource = self
+        searchBar.delegate = self
+
+    }
+}
+
+//MARK: 서치바 델리게이트
+extension MonthlyView: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            taskTableView.tasks = taskService.fetchActiveTasks()
+        } else {
+            taskTableView.tasks = taskService.fetchActiveTasks().filter { task in
+                return task.title.lowercased().contains(searchText.lowercased())
+            }
+        }
+        taskTableView.tableView.reloadData()
     }
 }
 
 
-//MARK: 프로토콜 - 델리게이트 패턴 구현
+//MARK: 캘린더 델리게이트 및 소스
+extension MonthlyView: FSCalendarDelegate, FSCalendarDataSource {
+    // Implement delegate and data source methods here
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        // Handle the logic when a date is selected
+        
+    }
+    
+    // Add more methods if needed
+}
+
+
+//MARK: 플로팅버튼 델리게이트
 extension MonthlyView: FloatingButtonDelegate {
     func showAddTaskActionSheet() {
         let addTaskSheet = AddTaskActionSheet(taskService: taskService) { [weak self] in
-            guard let self else { return }
-            taskService.fetchTasks()
-                .forEach { task in
-                }
-                self.taskTableView.tableView.reloadData()
-            
+            guard let self = self else { return }
+            taskTableView.tasks = self.taskService.fetchActiveTasks()
+            taskTableView.tableView.reloadData()
         }
         present(addTaskSheet, animated: true, completion: nil)
     }
@@ -130,12 +155,4 @@ extension MonthlyView {
 }
 
 
-extension MonthlyView: FSCalendarDelegate, FSCalendarDataSource {
-    // Implement delegate and data source methods here
-    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        // Handle the logic when a date is selected
-        
-    }
-    
-    // Add more methods if needed
-}
+
