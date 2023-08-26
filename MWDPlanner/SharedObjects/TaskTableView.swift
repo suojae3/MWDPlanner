@@ -2,7 +2,7 @@ import UIKit
 
 class TaskTableView: NSObject {
     
-    private var tasks: [Task] = []
+     var tasks: [Task] = []
     private let taskService: TaskService
     
     let tableView: UITableView = {
@@ -24,6 +24,9 @@ class TaskTableView: NSObject {
         tasks = taskService.fetchActiveTasks()
     }
 }
+
+
+
 extension TaskTableView: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -42,6 +45,7 @@ extension TaskTableView: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath)
         
         let task: Task
+        
         if indexPath.section == 0 {
             task = taskService.fetchActiveTasks()[indexPath.row]
         } else {
@@ -55,6 +59,8 @@ extension TaskTableView: UITableViewDataSource, UITableViewDelegate {
         
         return cell
     }
+    
+    
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         

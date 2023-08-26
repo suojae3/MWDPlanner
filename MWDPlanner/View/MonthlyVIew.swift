@@ -52,6 +52,8 @@ extension MonthlyView {
         floatingButton.delegate = self
         calendarView.delegate = self
         calendarView.dataSource = self
+        searchBar.delegate = self
+
     }
 }
 
@@ -60,12 +62,9 @@ extension MonthlyView {
 extension MonthlyView: FloatingButtonDelegate {
     func showAddTaskActionSheet() {
         let addTaskSheet = AddTaskActionSheet(taskService: taskService) { [weak self] in
-            guard let self else { return }
-            taskService.fetchActiveTasks()
-                .forEach { task in
-                }
-                self.taskTableView.tableView.reloadData()
-            
+            guard let self = self else { return }
+            taskTableView.tasks = self.taskService.fetchActiveTasks()
+            self.taskTableView.tableView.reloadData()
         }
         present(addTaskSheet, animated: true, completion: nil)
     }
@@ -128,6 +127,21 @@ extension MonthlyView {
             ])
         }
 }
+
+
+extension MonthlyView: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            taskTableView.tasks = taskService.fetchActiveTasks()
+        } else {
+            taskTableView.tasks = taskService.fetchActiveTasks().filter { task in
+                return task.title.lowercased().contains(searchText.lowercased())
+            }
+        }
+        taskTableView.tableView.reloadData()
+    }
+}
+
 
 
 extension MonthlyView: FSCalendarDelegate, FSCalendarDataSource {
