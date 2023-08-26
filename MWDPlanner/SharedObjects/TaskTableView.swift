@@ -1,7 +1,5 @@
 import UIKit
 
-
-// UITableView의 display와 manage를 책임지는 클래스
 class TaskTableView: NSObject {
     
     private var tasks: [Task] = []
@@ -50,10 +48,6 @@ extension TaskTableView: UITableViewDataSource, UITableViewDelegate {
         return configuration
     }
      
- 
-
-
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         self.tasks.count
     }
@@ -61,9 +55,11 @@ extension TaskTableView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath)
         let task = tasks[indexPath.row]
-        cell.textLabel?.text = task.title
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM월 dd일 HH:00"
+        let formattedDate = dateFormatter.string(from: task.dueDate)
+        cell.textLabel?.text = "[\(formattedDate)] \(task.title)"
         return cell
     }
-    
-   
 }
