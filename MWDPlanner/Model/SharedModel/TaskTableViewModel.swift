@@ -1,24 +1,27 @@
-
-import Foundation
-
-
-class TaskTableViewModel {
-    
-
-    private let taskService = TaskService()
-    private var tasks: [Task] = []
-    
-    func fetchTasks() {
-        tasks = taskService.fetchTasks()
-    }
-    
-    func taskCount() -> Int {
-        return tasks.count
-    }
-    
-    func task(at index: Int) -> Task {
-        return tasks[index]
-    }
-}
-
-
+//
+//import Foundation
+//
+//
+//
+//class TaskTableViewModel {
+//
+//    private var tasks: [Task] = []
+//
+//    private let taskService: TaskService
+//
+//    init(service: TaskService) {
+//        self.taskService = service
+//        self.taskService.fetchCompletion = { [weak self] taskArray in
+//            self?.tasks = taskArray
+//        }
+//        tasks = taskService.fetchTasks()
+//    }
+//
+//    var numberOfTasks: Int {
+//        tasks.count
+//    }
+//
+//    func task(at index: Int) -> Task {
+//        return tasks[index]
+//    }
+//}

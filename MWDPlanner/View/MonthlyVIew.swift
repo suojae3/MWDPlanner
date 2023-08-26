@@ -6,84 +6,86 @@
 //
 
 import UIKit
+import FSCalendar
 
 
-
+// UIComponent랑 변수명 맞추기
 
 //MARK: Instantiation
 class MonthlyView: UIViewController {
-
-    private let taskTableView = TaskTableView()
-    let viewModel = TaskTableViewModel()
-
     
-    private let floatingButton = FloatingButton(model: FloatingButtonModel())
-    weak var delegate: FloatingButtonModelDelegate?
-    
+    private lazy var taskService = TaskService.shared
+    private lazy var taskTableView = TaskTableView(service: taskService)
+    private let floatingButton = FloatingButton()
 
-    
-    //컴포넌트
-    let profileView: UIView = {
+    private let profileView: UIView = {
            let view = UIView()
            view.backgroundColor = .lightGray
            return view
        }()
-       
-    let searchBar: UISearchBar = {
+    
+    private let calendarView: FSCalendar = {
+        let calendar = FSCalendar()
+        return calendar
+    }()
+    
+    private let searchBar: UISearchBar = {
            let searchBar = UISearchBar()
+            searchBar.placeholder = "할 일을 검색해보세요"
+            searchBar.searchTextField.backgroundColor = UIColor.clear
+
            return searchBar
        }()
-       
-       let calendarView: UIView = {
-           let view = UIView()
-           view.backgroundColor = .black
-           return view
-       }()
     
-    // Inside the viewDidLoad method:
-    let taskService = TaskService()
+    //플로팅 버튼 화면전환
+    weak var floatingButtonDelegate: FloatingButtonDelegate?
+        
 
 }
-
-
 
 //MARK: LifeCycle
 extension MonthlyView {
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
         setUpUI()
-        floatingButton.model.delegate = self
-        
-        //테이블뷰
-        taskTableView.viewModel = viewModel
-        taskTableView.tasksTableView.frame = view.bounds
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        taskTableView.viewModel.fetchTasks()
-        taskTableView.tasksTableView.reloadData()
+        taskTableView.tableView.reloadData()
+        floatingButton.delegate = self
+        calendarView.delegate = self
+        calendarView.dataSource = self
     }
 }
 
 
+//MARK: 프로토콜 - 델리게이트 패턴 구현
+extension MonthlyView: FloatingButtonDelegate {
+    func showAddTaskActionSheet() {
+        let addTaskSheet = AddTaskActionSheet(taskService: taskService) { [weak self] in
+            guard let self else { return }
+            taskService.fetchTasks()
+                .forEach { task in
+                }
+                self.taskTableView.tableView.reloadData()
+            
+        }
+        present(addTaskSheet, animated: true, completion: nil)
+    }
+}
+
 //MARK: SetUpUI
 extension MonthlyView {
-    
-    func setUpUI() {
-        
-            view.addSubview(self.profileView)
-            view.addSubview(self.searchBar)
-            view.addSubview(self.calendarView)
-        view.addSubview(self.taskTableView.tasksTableView)
-            view.addSubview(floatingButton.floatingButton)
+     private func setUpUI() {
+        view.backgroundColor = .white
+        view.addSubview(self.profileView)
+        view.addSubview(self.searchBar)
+        view.addSubview(self.calendarView)
+        view.addSubview(self.taskTableView.tableView)
+        view.addSubview(floatingButton.floatingButton)
 
         // AutoResizeMask 끄기
         self.profileView.translatesAutoresizingMaskIntoConstraints = false
         self.searchBar.translatesAutoresizingMaskIntoConstraints = false
         self.calendarView.translatesAutoresizingMaskIntoConstraints = false
-        self.taskTableView.tasksTableView.translatesAutoresizingMaskIntoConstraints = false
+        self.taskTableView.tableView.translatesAutoresizingMaskIntoConstraints = false
         floatingButton.floatingButton.translatesAutoresizingMaskIntoConstraints = false
             
         // Profile View 제약
@@ -111,10 +113,10 @@ extension MonthlyView {
         
         // Tasks TableView 제약
         NSLayoutConstraint.activate([
-            self.taskTableView.tasksTableView.topAnchor.constraint(equalTo: self.calendarView.bottomAnchor, constant: 10),
-            self.taskTableView.tasksTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            self.taskTableView.tasksTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            self.taskTableView.tasksTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            self.taskTableView.tableView.topAnchor.constraint(equalTo: self.calendarView.bottomAnchor, constant: 10),
+            self.taskTableView.tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            self.taskTableView.tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            self.taskTableView.tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
             
         // Floating Button 제약
@@ -128,12 +130,12 @@ extension MonthlyView {
 }
 
 
-//MARK: 프로토콜 - 델리게이트 패턴 구현
-extension MonthlyView: FloatingButtonModelDelegate {
-    func showAddTaskActionSheet() {
-        let addTaskSheet = AddTaskActionSheet(model: AddTaskModel())
-        present(addTaskSheet, animated: true, completion: nil)
+extension MonthlyView: FSCalendarDelegate, FSCalendarDataSource {
+    // Implement delegate and data source methods here
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        // Handle the logic when a date is selected
+        
     }
+    
+    // Add more methods if needed
 }
-
-

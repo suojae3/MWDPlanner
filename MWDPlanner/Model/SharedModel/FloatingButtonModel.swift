@@ -7,20 +7,22 @@
 
 import Foundation
 
-
-protocol FloatingButtonModelDelegate: AnyObject {
-    func showAddTaskActionSheet()
-}
-
-class FloatingButtonModel {
-    
-    weak var delegate: FloatingButtonModelDelegate?
-
-    @objc func buttonTapped() {
-        print("buttonTapped")
-        delegate?.showAddTaskActionSheet()
-    }
-}
+//protocol FloatingButtonModelDelegate: AnyObject {
+//    func showAddTaskActionSheet()
+//}
+//
+//
+//
+//class FloatingButtonModel {
+//    
+//    weak var delegate: FloatingButtonModelDelegate?
+//
+//    @objc func buttonTapped() {
+//        print("buttonTapped")
+//        delegate?.showAddTaskActionSheet()
+//    }
+//
+//}
 
 
 
