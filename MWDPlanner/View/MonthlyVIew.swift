@@ -24,12 +24,10 @@ class MonthlyView: UIViewController {
     }()
     
     //테이블뷰 인스턴스
-    private lazy var taskTableView = TaskTableView(
-        taskTableViewModel: TaskTableViewModel(service: taskService)
-    )
+    private lazy var taskTableView = TaskTableView(service: taskService)
     
     // 플로팅 버튼 인스턴스
-    private let floatingButton = FloatingButton(model: FloatingButtonModel())
+    private let floatingButton = FloatingButton()
     
     // 플로팅 버튼 델리게이트 패턴(화면전환 - ActionSheet)
     weak var delegate: FloatingButtonModelDelegate?
@@ -44,6 +42,9 @@ class MonthlyView: UIViewController {
        
     private let searchBar: UISearchBar = {
            let searchBar = UISearchBar()
+            searchBar.placeholder = "할 일을 검색해보세요"
+            searchBar.searchTextField.backgroundColor = UIColor.clear
+
            return searchBar
        }()
        
@@ -60,22 +61,13 @@ extension MonthlyView {
         setUpUI()
         
         // 플로팅 버튼 델리게이트 패턴(화면전환 - ActionSheet)
-        floatingButton.model.delegate = self
+        floatingButton.delegate = self
         
         //달력 라이브러리
         calendarView.delegate = self
         calendarView.dataSource = self
         
         
-        taskTableView.tableView.reloadData()
-    }
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        //fullScreen 이 떠야 viewWillAppear가 실행됨!
-        print("ViewWillAppear")
         taskTableView.tableView.reloadData()
     }
 }
@@ -88,7 +80,6 @@ extension MonthlyView: FloatingButtonModelDelegate {
             guard let self else { return }
             taskService.fetchTasks()
                 .forEach { task in
-//                    print(task.title)
                 }
                 self.taskTableView.tableView.reloadData()
             
@@ -100,6 +91,7 @@ extension MonthlyView: FloatingButtonModelDelegate {
 //MARK: SetUpUI
 extension MonthlyView {
      private func setUpUI() {
+         
         view.addSubview(self.profileView)
         view.addSubview(self.searchBar)
         view.addSubview(self.calendarView)

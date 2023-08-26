@@ -2,16 +2,18 @@
 import UIKit
 
 
+protocol FloatingButtonModelDelegate: AnyObject {
+    func showAddTaskActionSheet()
+}
 
 
 //MARK: Instantiation
 
 class FloatingButton {
-     let model: FloatingButtonModel
      let floatingButton: UIButton = UIButton(type: .system)
+        weak var delegate: FloatingButtonModelDelegate?
 
-    init(model: FloatingButtonModel) {
-        self.model = model
+    init() {
         configureFloatingButton()
     }
 
@@ -20,6 +22,11 @@ class FloatingButton {
         floatingButton.setTitle("+", for: .normal)
         floatingButton.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         floatingButton.layer.cornerRadius = 25
-        floatingButton.addTarget(model, action: #selector(model.buttonTapped), for: .touchUpInside)
+        floatingButton.addTarget(self, action: #selector(self.buttonTapped), for: .touchUpInside)
+    }
+        @objc func buttonTapped() {
+            print("buttonTapped")
+            delegate?.showAddTaskActionSheet()
+        
     }
 }

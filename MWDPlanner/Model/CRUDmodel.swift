@@ -28,7 +28,7 @@ class TaskService {
             // decode가 완요되면 task를 리턴하기 - 출력
             return tasks
         }
-        
+
         // 만약 가져온 데이터가 비어있거나 디코딩에 실패한다면 빈배열 리턴하기 - 출력
         return []
     }
