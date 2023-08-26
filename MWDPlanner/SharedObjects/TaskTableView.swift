@@ -13,7 +13,9 @@ class TaskTableView: NSObject {
 
      init(service: TaskService) {
         self.taskService = service
+         
         super.init()
+         
         tableView.dataSource = self
         tableView.delegate = self
          
@@ -67,21 +69,17 @@ extension TaskTableView: UITableViewDataSource, UITableViewDelegate {
         let action = UIContextualAction(style: .normal, title: nil) { (action, view, completion) in
             
             switch indexPath.section {
-                
             // 해야할 일
             case 0:
                 let taskToDelete = self.taskService.fetchActiveTasks()[indexPath.row]
                 self.taskService.delete(taskToDelete)
-            
             // 끝낸 일
             case 1:
                 let taskToPermanentlyDelete = self.taskService.fetchDeletedTasks()[indexPath.row]
                 self.taskService.permanentlyDelete(taskToPermanentlyDelete)
-                
             default:
                 break
             }
-            
             tableView.reloadData()
             completion(true)
         }
@@ -94,5 +92,4 @@ extension TaskTableView: UITableViewDataSource, UITableViewDelegate {
         
         return configuration
     }
-
 }

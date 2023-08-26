@@ -57,8 +57,34 @@ extension MonthlyView {
     }
 }
 
+//MARK: 서치바 델리게이트
+extension MonthlyView: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            taskTableView.tasks = taskService.fetchActiveTasks()
+        } else {
+            taskTableView.tasks = taskService.fetchActiveTasks().filter { task in
+                return task.title.lowercased().contains(searchText.lowercased())
+            }
+        }
+        taskTableView.tableView.reloadData()
+    }
+}
 
-//MARK: 프로토콜 - 델리게이트 패턴 구현
+
+//MARK: 캘린더 델리게이트 및 소스
+extension MonthlyView: FSCalendarDelegate, FSCalendarDataSource {
+    // Implement delegate and data source methods here
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        // Handle the logic when a date is selected
+        
+    }
+    
+    // Add more methods if needed
+}
+
+
+//MARK: 플로팅버튼 델리게이트
 extension MonthlyView: FloatingButtonDelegate {
     func showAddTaskActionSheet() {
         let addTaskSheet = AddTaskActionSheet(taskService: taskService) { [weak self] in
@@ -129,27 +155,4 @@ extension MonthlyView {
 }
 
 
-extension MonthlyView: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.isEmpty {
-            taskTableView.tasks = taskService.fetchActiveTasks()
-        } else {
-            taskTableView.tasks = taskService.fetchActiveTasks().filter { task in
-                return task.title.lowercased().contains(searchText.lowercased())
-            }
-        }
-        taskTableView.tableView.reloadData()
-    }
-}
 
-
-
-extension MonthlyView: FSCalendarDelegate, FSCalendarDataSource {
-    // Implement delegate and data source methods here
-    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        // Handle the logic when a date is selected
-        
-    }
-    
-    // Add more methods if needed
-}
