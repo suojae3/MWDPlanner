@@ -64,7 +64,7 @@ extension MonthlyView: FloatingButtonDelegate {
         let addTaskSheet = AddTaskActionSheet(taskService: taskService) { [weak self] in
             guard let self = self else { return }
             taskTableView.tasks = self.taskService.fetchActiveTasks()
-            self.taskTableView.tableView.reloadData()
+            taskTableView.tableView.reloadData()
         }
         present(addTaskSheet, animated: true, completion: nil)
     }
