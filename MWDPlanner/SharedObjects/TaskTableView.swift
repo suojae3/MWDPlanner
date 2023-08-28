@@ -43,25 +43,38 @@ extension TaskTableView: UITableViewDataSource, UITableViewDelegate {
         return section == 0 ? "해야할 일" : "완수한 일"
     }
 
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return !filteredData.isEmpty ? filteredData.count : taskService.fetchActiveTasks().count
+        if searchBar.searchBar.isFirstResponder, !searchBar.searchBar.text!.isEmpty {
+            if section == 0 {
+                return filteredData.count
+            } else {
+                return filteredDeletedTasks.count
+            }
         } else {
-            return !filteredDeletedTasks.isEmpty ? filteredDeletedTasks.count : taskService.fetchDeletedTasks().count
+            if section == 0 {
+                return taskService.fetchActiveTasks().count
+            } else {
+                return taskService.fetchDeletedTasks().count
+            }
         }
     }
 
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath)
         let task: Task
         
-        if indexPath.section == 0 {
-            task = !filteredData.isEmpty ? filteredData[indexPath.row] : taskService.fetchActiveTasks()[indexPath.row]
+        if searchBar.searchBar.isFirstResponder, !searchBar.searchBar.text!.isEmpty {
+            if indexPath.section == 0 {
+                task = filteredData[indexPath.row]
+            } else {
+                task = filteredDeletedTasks[indexPath.row]
+            }
         } else {
-            task = !filteredDeletedTasks.isEmpty ? filteredDeletedTasks[indexPath.row] : taskService.fetchDeletedTasks()[indexPath.row]
+            if indexPath.section == 0 {
+                task = taskService.fetchActiveTasks()[indexPath.row]
+            } else {
+                task = taskService.fetchDeletedTasks()[indexPath.row]
+            }
         }
         
         let dateFormatter = DateFormatter()
