@@ -1,32 +1,30 @@
-
 import UIKit
-
 
 protocol FloatingButtonDelegate: AnyObject {
     func showAddTaskActionSheet()
 }
 
-
-//MARK: Instantiation
-
 class FloatingButton {
     
-     let floatingButton: UIButton = UIButton(type: .system)
+    // MARK: - Properties
+    lazy var floatingButton: UIButton = {
+        let button = UIButton(type: .system)
+        let buttonImage = UIImage(systemName: "pencil.and.outline")?
+            .withConfiguration(UIImage.SymbolConfiguration(scale: .large))
+        button.tintColor = .black
+        button.setImage(buttonImage, for: .normal)
+        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        return button
+    }()
+    
     weak var delegate: FloatingButtonDelegate?
-
-    init() {
-        configureFloatingButton()
-    }
-
-    private func configureFloatingButton() {
-        let buttonImage = UIImage(systemName: "pencil.and.outline")!.withConfiguration(UIImage.SymbolConfiguration(scale: .large))
-        floatingButton.tintColor = .black
-        floatingButton.setImage(buttonImage, for: .normal)
-        floatingButton.addTarget(self, action: #selector(self.buttonTapped), for: .touchUpInside)
-    }
-        @objc func buttonTapped() {
-            print("buttonTapped")
-            delegate?.showAddTaskActionSheet()
-        
+    
+    // MARK: - Initialization
+    init() {}
+    
+    // MARK: - Actions
+    @objc private func buttonTapped() {
+        print("buttonTapped")
+        delegate?.showAddTaskActionSheet()
     }
 }

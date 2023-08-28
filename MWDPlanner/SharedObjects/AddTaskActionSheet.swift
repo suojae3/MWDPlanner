@@ -9,8 +9,17 @@ class AddTaskActionSheet: UIViewController {
     private let dismissCallback: () -> Void
     
     // UI Components
-    private let titleLabel = UILabel(text: "Add Task", font: UIFont.boldSystemFont(ofSize: 24), alignment: .center)
-    private let titleTextField = UITextField(placeholder: "Task Title", borderStyle: .roundedRect)
+    private let titleLabel = UILabel(
+        text: "Add Task",
+        font: UIFont.boldSystemFont(ofSize: 24),
+        alignment: .center
+    )
+    
+    private let titleTextField = UITextField(
+        placeholder: "Task Title",
+        borderStyle: .roundedRect
+    )
+    
     private let datePicker: UIDatePicker = {
         let picker = UIDatePicker()
         picker.datePickerMode = .dateAndTime
@@ -19,7 +28,11 @@ class AddTaskActionSheet: UIViewController {
     
     private let descriptionTextView: UITextView = {
         let textView = UITextView()
-        textView.set(borderColor: UIColor.lightGray.cgColor, borderWidth: 1.0, cornerRadius: 5.0)
+        textView.set(
+            borderColor: UIColor.lightGray.cgColor,
+            borderWidth: 1.0,
+            cornerRadius: 5.0
+        )
         return textView
     }()
     
