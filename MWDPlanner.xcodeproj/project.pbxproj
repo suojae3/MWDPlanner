@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		085869C62A9C92B100D403B0 /* AddTaskActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085869C52A9C92B100D403B0 /* AddTaskActionSheet.swift */; };
+		085869C82A9C9AEA00D403B0 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085869C72A9C9AEA00D403B0 /* SearchBar.swift */; };
 		08994E242A94F53800964768 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08994E232A94F53800964768 /* AppDelegate.swift */; };
 		08994E262A94F53800964768 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08994E252A94F53800964768 /* SceneDelegate.swift */; };
 		08994E282A94F53800964768 /* TaskTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08994E272A94F53800964768 /* TaskTableView.swift */; };
@@ -18,11 +20,12 @@
 		08994E522A958D8800964768 /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08994E512A958D8800964768 /* MainTabBar.swift */; };
 		08994E542A958E7400964768 /* CRUDmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08994E532A958E7400964768 /* CRUDmodel.swift */; };
 		08994E5B2A95BCDD00964768 /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08994E5A2A95BCDD00964768 /* FloatingButton.swift */; };
-		08994E5D2A95BE0400964768 /* AddTaskActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08994E5C2A95BE0400964768 /* AddTaskActionSheet.swift */; };
 		6B8B274ED387C510122F10F0 /* Pods_MWDPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2203EF771AAA03FB8D76F582 /* Pods_MWDPlanner.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		085869C52A9C92B100D403B0 /* AddTaskActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskActionSheet.swift; sourceTree = "<group>"; };
+		085869C72A9C9AEA00D403B0 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		08994E202A94F53800964768 /* MWDPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MWDPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08994E232A94F53800964768 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08994E252A94F53800964768 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -36,7 +39,6 @@
 		08994E512A958D8800964768 /* MainTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
 		08994E532A958E7400964768 /* CRUDmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRUDmodel.swift; sourceTree = "<group>"; };
 		08994E5A2A95BCDD00964768 /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
-		08994E5C2A95BE0400964768 /* AddTaskActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddTaskActionSheet.swift; path = MWDPlanner/SharedObjects/AddTaskActionSheet.swift; sourceTree = SOURCE_ROOT; };
 		2203EF771AAA03FB8D76F582 /* Pods_MWDPlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MWDPlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		846BDD29F6EA04F10C92D9B4 /* Pods-MWDPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MWDPlanner.release.xcconfig"; path = "Target Support Files/Pods-MWDPlanner/Pods-MWDPlanner.release.xcconfig"; sourceTree = "<group>"; };
 		B5DC3EB29FABBBFDB64DE6DB /* Pods-MWDPlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MWDPlanner.debug.xcconfig"; path = "Target Support Files/Pods-MWDPlanner/Pods-MWDPlanner.debug.xcconfig"; sourceTree = "<group>"; };
@@ -102,7 +104,8 @@
 			children = (
 				08994E272A94F53800964768 /* TaskTableView.swift */,
 				08994E5A2A95BCDD00964768 /* FloatingButton.swift */,
-				08994E5C2A95BE0400964768 /* AddTaskActionSheet.swift */,
+				085869C52A9C92B100D403B0 /* AddTaskActionSheet.swift */,
+				085869C72A9C9AEA00D403B0 /* SearchBar.swift */,
 			);
 			path = SharedObjects;
 			sourceTree = "<group>";
@@ -247,12 +250,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				08994E282A94F53800964768 /* TaskTableView.swift in Sources */,
+				085869C62A9C92B100D403B0 /* AddTaskActionSheet.swift in Sources */,
 				08994E522A958D8800964768 /* MainTabBar.swift in Sources */,
 				08994E242A94F53800964768 /* AppDelegate.swift in Sources */,
 				08994E262A94F53800964768 /* SceneDelegate.swift in Sources */,
+				085869C82A9C9AEA00D403B0 /* SearchBar.swift in Sources */,
 				08994E452A94F68200964768 /* MonthlyVIew.swift in Sources */,
 				08994E472A94F68B00964768 /* WeeklyView.swift in Sources */,
-				08994E5D2A95BE0400964768 /* AddTaskActionSheet.swift in Sources */,
 				08994E542A958E7400964768 /* CRUDmodel.swift in Sources */,
 				08994E3C2A94F61300964768 /* DataSource.swift in Sources */,
 				08994E5B2A95BCDD00964768 /* FloatingButton.swift in Sources */,

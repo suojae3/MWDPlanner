@@ -17,6 +17,7 @@ class MonthlyView: UIViewController {
     private lazy var taskService = TaskService.shared
     private lazy var taskTableView = TaskTableView(service: taskService)
     private let floatingButton = FloatingButton()
+    private let searchBar = SearchBarClass()
 
     private let profileView: UIView = {
            let view = UIView()
@@ -29,13 +30,7 @@ class MonthlyView: UIViewController {
         return calendar
     }()
     
-    private let searchBar: UISearchBar = {
-           let searchBar = UISearchBar()
-            searchBar.placeholder = "할 일을 검색해보세요"
-            searchBar.searchTextField.backgroundColor = UIColor.clear
 
-           return searchBar
-       }()
     
     //플로팅 버튼 화면전환
     weak var floatingButtonDelegate: FloatingButtonDelegate?
@@ -52,24 +47,10 @@ extension MonthlyView {
         floatingButton.delegate = self
         calendarView.delegate = self
         calendarView.dataSource = self
-        searchBar.delegate = self
 
     }
 }
 
-//MARK: 서치바 델리게이트
-extension MonthlyView: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.isEmpty {
-            taskTableView.tasks = taskService.fetchActiveTasks()
-        } else {
-            taskTableView.tasks = taskService.fetchActiveTasks().filter { task in
-                return task.title.lowercased().contains(searchText.lowercased())
-            }
-        }
-        taskTableView.tableView.reloadData()
-    }
-}
 
 
 //MARK: 캘린더 델리게이트 및 소스
@@ -101,14 +82,14 @@ extension MonthlyView {
      private func setUpUI() {
         view.backgroundColor = .white
         view.addSubview(self.profileView)
-        view.addSubview(self.searchBar)
         view.addSubview(self.calendarView)
         view.addSubview(self.taskTableView.tableView)
+        view.addSubview(searchBar.searchBar)
         view.addSubview(floatingButton.floatingButton)
 
         // AutoResizeMask 끄기
         self.profileView.translatesAutoresizingMaskIntoConstraints = false
-        self.searchBar.translatesAutoresizingMaskIntoConstraints = false
+         searchBar.searchBar.translatesAutoresizingMaskIntoConstraints = false
         self.calendarView.translatesAutoresizingMaskIntoConstraints = false
         self.taskTableView.tableView.translatesAutoresizingMaskIntoConstraints = false
         floatingButton.floatingButton.translatesAutoresizingMaskIntoConstraints = false
@@ -123,14 +104,14 @@ extension MonthlyView {
             
         // SearchBar 제약
         NSLayoutConstraint.activate([
-            self.searchBar.topAnchor.constraint(equalTo: self.profileView.bottomAnchor, constant: 10),
-            self.searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            self.searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            searchBar.searchBar.topAnchor.constraint(equalTo: self.profileView.bottomAnchor, constant: 10),
+            searchBar.searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            searchBar.searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
         ])
             
         // Calendar View 제약
         NSLayoutConstraint.activate([
-            self.calendarView.topAnchor.constraint(equalTo: self.searchBar.bottomAnchor, constant: 10),
+            self.calendarView.topAnchor.constraint(equalTo: searchBar.searchBar.bottomAnchor, constant: 10),
             self.calendarView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             self.calendarView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             self.calendarView.heightAnchor.constraint(equalToConstant: 300)
