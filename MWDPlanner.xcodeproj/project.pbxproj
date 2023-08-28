@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		085869C62A9C92B100D403B0 /* AddTaskActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085869C52A9C92B100D403B0 /* AddTaskActionSheet.swift */; };
 		085869C82A9C9AEA00D403B0 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085869C72A9C9AEA00D403B0 /* SearchBar.swift */; };
+		0867CAAA2A9CCD6800234E64 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0867CAA92A9CCD6800234E64 /* UIViewExtension.swift */; };
 		08994E242A94F53800964768 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08994E232A94F53800964768 /* AppDelegate.swift */; };
 		08994E262A94F53800964768 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08994E252A94F53800964768 /* SceneDelegate.swift */; };
 		08994E282A94F53800964768 /* TaskTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08994E272A94F53800964768 /* TaskTableView.swift */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		085869C52A9C92B100D403B0 /* AddTaskActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskActionSheet.swift; sourceTree = "<group>"; };
 		085869C72A9C9AEA00D403B0 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		0867CAA92A9CCD6800234E64 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		08994E202A94F53800964768 /* MWDPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MWDPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08994E232A94F53800964768 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08994E252A94F53800964768 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				08994E442A94F68200964768 /* MonthlyVIew.swift */,
 				08994E462A94F68B00964768 /* WeeklyView.swift */,
 				08994E3F2A94F63E00964768 /* DailyView.swift */,
+				0867CAA92A9CCD6800234E64 /* UIViewExtension.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 				08994E472A94F68B00964768 /* WeeklyView.swift in Sources */,
 				08994E542A958E7400964768 /* CRUDmodel.swift in Sources */,
 				08994E3C2A94F61300964768 /* DataSource.swift in Sources */,
+				0867CAAA2A9CCD6800234E64 /* UIViewExtension.swift in Sources */,
 				08994E5B2A95BCDD00964768 /* FloatingButton.swift in Sources */,
 				08994E402A94F63E00964768 /* DailyView.swift in Sources */,
 			);

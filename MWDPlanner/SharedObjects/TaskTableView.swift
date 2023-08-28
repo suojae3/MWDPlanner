@@ -139,11 +139,13 @@
 //
 //    }
 //}
+
+
 import UIKit
 
 class TaskTableView: NSObject {
     
-    // MARK: 인스턴스
+    // MARK: - 인스턴스 셋팅
     
     var tasks: [Task] = []
     var filteredData: [Task] = []
@@ -158,7 +160,7 @@ class TaskTableView: NSObject {
         return tableView
     }()
     
-    // MARK: 초기화
+    // MARK: - 초기화 셋팅
     
     init(service: TaskService, searchBar: SearchBarController) {
         self.taskService = service
@@ -188,7 +190,7 @@ class TaskTableView: NSObject {
 }
 
 
-// MARK: UITableViewDataSource, UITableViewDelegate
+// MARK: - UITableViewDataSource, UITableViewDelegate
 
 extension TaskTableView: UITableViewDataSource, UITableViewDelegate {
     
@@ -262,7 +264,7 @@ extension TaskTableView: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-// MARK: SearchBarDelegate
+// MARK: - SearchBarDelegate
 
 extension TaskTableView: SearchBarDelegate {
     func searchFilter(with searchText: String) {
@@ -273,7 +275,7 @@ extension TaskTableView: SearchBarDelegate {
         filteredDeletedTasks = taskService.fetchDeletedTasks().filter {
             $0.title.lowercased().contains(searchText.lowercased())
         }
-        
+        print("서치 델리게이트 작동하는지 테스트")
         tableView.reloadData()
     }
 }
