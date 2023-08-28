@@ -73,6 +73,7 @@ extension TaskTableView: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 let taskToDelete = self.taskService.fetchActiveTasks()[indexPath.row]
                 self.taskService.delete(taskToDelete)
+    
             // 끝낸 일
             case 1:
                 let taskToPermanentlyDelete = self.taskService.fetchDeletedTasks()[indexPath.row]
@@ -92,4 +93,13 @@ extension TaskTableView: UITableViewDataSource, UITableViewDelegate {
         
         return configuration
     }
+}
+
+
+extension TaskTableView: SearchBarDelegate {
+    func searchFilter() {
+        print("searchBar delegate in tableView test")
+    }
+    
+    
 }

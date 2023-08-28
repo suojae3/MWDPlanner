@@ -2,11 +2,14 @@
 
 import UIKit
 
+protocol SearchBarDelegate {
+    func searchFilter()
+}
 
 
 
 
-class SearchBarClass { 
+class SearchBarClass:NSObject {
     
      let searchBar: UISearchBar = {
            let searchBar = UISearchBar()
@@ -16,6 +19,21 @@ class SearchBarClass {
            return searchBar
        }()
     
+    override init() {
+        super.init()
+        searchBar.delegate = self
+    }
+}
+
+
+extension SearchBarClass: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        print("user input value detectedSearchBarDelegate")
+    }
+
+
     
 }
 
