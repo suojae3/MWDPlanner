@@ -63,8 +63,7 @@
 //    }
 //
 //}
-//
-//
+
 import Foundation
 
 class TaskService {
@@ -76,8 +75,6 @@ class TaskService {
     static let shared = TaskService()
     
     var fetchCompletion: (([Task]) -> Void)?
-
-    // MARK: - Initializer
 
     private init() {}
     
@@ -135,3 +132,6 @@ class TaskService {
         }
     }
 }
+
+
+
