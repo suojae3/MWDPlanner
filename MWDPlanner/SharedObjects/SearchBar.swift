@@ -2,14 +2,13 @@
 
 import UIKit
 
-protocol SearchBarDelegate {
-    func searchFilter()
+protocol SearchBarDelegate: AnyObject {
+    func searchFilter(with searchText: String)
 }
 
-
-
-
-class SearchBarClass:NSObject {
+class SearchBarController:NSObject {
+    
+    var delegate: SearchBarDelegate?
     
      let searchBar: UISearchBar = {
            let searchBar = UISearchBar()
@@ -25,16 +24,12 @@ class SearchBarClass:NSObject {
     }
 }
 
+extension SearchBarController: UISearchBarDelegate {
 
-extension SearchBarClass: UISearchBarDelegate {
-    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        print("user input value detectedSearchBarDelegate")
+        delegate?.searchFilter(with: searchText)
+        print("user input값 들어오는지 테스트")
     }
-
-
-    
 }
 
 

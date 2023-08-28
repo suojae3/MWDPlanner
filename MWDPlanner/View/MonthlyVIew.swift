@@ -15,9 +15,9 @@ import FSCalendar
 class MonthlyView: UIViewController {
     
     private lazy var taskService = TaskService.shared
-    private lazy var taskTableView = TaskTableView(service: taskService)
+    private lazy var taskTableView = TaskTableView(service: taskService, searchBar: searchBar)
     private let floatingButton = FloatingButton()
-    private let searchBar = SearchBarClass()
+    private let searchBar = SearchBarController()
 
     private let profileView: UIView = {
            let view = UIView()
@@ -47,6 +47,7 @@ extension MonthlyView {
         floatingButton.delegate = self
         calendarView.delegate = self
         calendarView.dataSource = self
+//        searchBar.delegate = self
 
     }
 }
@@ -135,5 +136,19 @@ extension MonthlyView {
         }
 }
 
-
+//
+//extension MonthlyView: SearchBarDelegate {
+//
+//    func searchFilter(with searchText: String) {
+////        filteredData = taskService.fetchActiveTasks().filter { task in
+////            return task.title.lowercased().contains(searchText.lowercased())
+////        }
+////        filteredDeletedTasks = taskService.fetchDeletedTasks().filter { task in
+////            return task.title.lowercased().contains(searchText.lowercased())
+////        }
+//        print("33")
+////        tableView.reloadData()
+////
+//    }
+//}
 
