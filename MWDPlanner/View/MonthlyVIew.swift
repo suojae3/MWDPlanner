@@ -50,6 +50,11 @@ class MonthlyView: UIViewController {
 
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        taskTableView.tableView.reloadData()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         QuoteService.shared.fetchRandomQuote { [weak self] quote in

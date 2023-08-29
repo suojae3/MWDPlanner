@@ -49,8 +49,11 @@ extension WeeklyView {
                 self?.titleLabel.text = quote
             }
         }
-
- 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        taskTableView.tableView.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
