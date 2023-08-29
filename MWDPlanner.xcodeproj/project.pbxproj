@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		085869C62A9C92B100D403B0 /* AddTaskActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085869C52A9C92B100D403B0 /* AddTaskActionSheet.swift */; };
+		085869C62A9C92B100D403B0 /* AddTaskActionSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085869C52A9C92B100D403B0 /* AddTaskActionSheetController.swift */; };
 		085869C82A9C9AEA00D403B0 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085869C72A9C9AEA00D403B0 /* SearchBar.swift */; };
 		0867CAAA2A9CCD6800234E64 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0867CAA92A9CCD6800234E64 /* UIViewExtension.swift */; };
 		08994E242A94F53800964768 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08994E232A94F53800964768 /* AppDelegate.swift */; };
 		08994E262A94F53800964768 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08994E252A94F53800964768 /* SceneDelegate.swift */; };
-		08994E282A94F53800964768 /* TaskTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08994E272A94F53800964768 /* TaskTableView.swift */; };
+		08994E282A94F53800964768 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08994E272A94F53800964768 /* TableViewController.swift */; };
 		08994E2D2A94F53A00964768 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08994E2C2A94F53A00964768 /* Assets.xcassets */; };
 		08994E3C2A94F61300964768 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08994E3B2A94F61300964768 /* DataSource.swift */; };
 		08994E402A94F63E00964768 /* DailyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08994E3F2A94F63E00964768 /* DailyView.swift */; };
@@ -20,18 +20,18 @@
 		08994E472A94F68B00964768 /* WeeklyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08994E462A94F68B00964768 /* WeeklyView.swift */; };
 		08994E522A958D8800964768 /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08994E512A958D8800964768 /* MainTabBar.swift */; };
 		08994E542A958E7400964768 /* CRUDmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08994E532A958E7400964768 /* CRUDmodel.swift */; };
-		08994E5B2A95BCDD00964768 /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08994E5A2A95BCDD00964768 /* FloatingButton.swift */; };
+		08994E5B2A95BCDD00964768 /* FloatingButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08994E5A2A95BCDD00964768 /* FloatingButtonController.swift */; };
 		6B8B274ED387C510122F10F0 /* Pods_MWDPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2203EF771AAA03FB8D76F582 /* Pods_MWDPlanner.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		085869C52A9C92B100D403B0 /* AddTaskActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskActionSheet.swift; sourceTree = "<group>"; };
+		085869C52A9C92B100D403B0 /* AddTaskActionSheetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskActionSheetController.swift; sourceTree = "<group>"; };
 		085869C72A9C9AEA00D403B0 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		0867CAA92A9CCD6800234E64 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		08994E202A94F53800964768 /* MWDPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MWDPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08994E232A94F53800964768 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08994E252A94F53800964768 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		08994E272A94F53800964768 /* TaskTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableView.swift; sourceTree = "<group>"; };
+		08994E272A94F53800964768 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		08994E2C2A94F53A00964768 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		08994E312A94F53A00964768 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08994E3B2A94F61300964768 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
@@ -40,7 +40,7 @@
 		08994E462A94F68B00964768 /* WeeklyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyView.swift; sourceTree = "<group>"; };
 		08994E512A958D8800964768 /* MainTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
 		08994E532A958E7400964768 /* CRUDmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRUDmodel.swift; sourceTree = "<group>"; };
-		08994E5A2A95BCDD00964768 /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
+		08994E5A2A95BCDD00964768 /* FloatingButtonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButtonController.swift; sourceTree = "<group>"; };
 		2203EF771AAA03FB8D76F582 /* Pods_MWDPlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MWDPlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		846BDD29F6EA04F10C92D9B4 /* Pods-MWDPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MWDPlanner.release.xcconfig"; path = "Target Support Files/Pods-MWDPlanner/Pods-MWDPlanner.release.xcconfig"; sourceTree = "<group>"; };
 		B5DC3EB29FABBBFDB64DE6DB /* Pods-MWDPlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MWDPlanner.debug.xcconfig"; path = "Target Support Files/Pods-MWDPlanner/Pods-MWDPlanner.debug.xcconfig"; sourceTree = "<group>"; };
@@ -105,9 +105,9 @@
 		08994E482A95793800964768 /* SharedObjects */ = {
 			isa = PBXGroup;
 			children = (
-				08994E272A94F53800964768 /* TaskTableView.swift */,
-				08994E5A2A95BCDD00964768 /* FloatingButton.swift */,
-				085869C52A9C92B100D403B0 /* AddTaskActionSheet.swift */,
+				08994E272A94F53800964768 /* TableViewController.swift */,
+				08994E5A2A95BCDD00964768 /* FloatingButtonController.swift */,
+				085869C52A9C92B100D403B0 /* AddTaskActionSheetController.swift */,
 				085869C72A9C9AEA00D403B0 /* SearchBar.swift */,
 			);
 			path = SharedObjects;
@@ -252,8 +252,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				08994E282A94F53800964768 /* TaskTableView.swift in Sources */,
-				085869C62A9C92B100D403B0 /* AddTaskActionSheet.swift in Sources */,
+				08994E282A94F53800964768 /* TableViewController.swift in Sources */,
+				085869C62A9C92B100D403B0 /* AddTaskActionSheetController.swift in Sources */,
 				08994E522A958D8800964768 /* MainTabBar.swift in Sources */,
 				08994E242A94F53800964768 /* AppDelegate.swift in Sources */,
 				08994E262A94F53800964768 /* SceneDelegate.swift in Sources */,
@@ -263,7 +263,7 @@
 				08994E542A958E7400964768 /* CRUDmodel.swift in Sources */,
 				08994E3C2A94F61300964768 /* DataSource.swift in Sources */,
 				0867CAAA2A9CCD6800234E64 /* UIViewExtension.swift in Sources */,
-				08994E5B2A95BCDD00964768 /* FloatingButton.swift in Sources */,
+				08994E5B2A95BCDD00964768 /* FloatingButtonController.swift in Sources */,
 				08994E402A94F63E00964768 /* DailyView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -16,8 +16,8 @@ class MonthlyView: UIViewController {
     // MARK: - 인스턴스 셋팅
     
     private lazy var taskService = TaskService.shared
-    private lazy var taskTableView = TaskTableView(service: taskService, searchBar: searchBar)
-    private let floatingButton = FloatingButton()
+    private lazy var taskTableView = TableViewController(service: taskService, searchBar: searchBar)
+    private let floatingButton = FloatingButtonController()
     private let searchBar = SearchBarController()
 
     private let profileView: UIView = {
@@ -40,9 +40,12 @@ class MonthlyView: UIViewController {
         floatingButton.delegate = self
         calendarView.delegate = self
         calendarView.dataSource = self
+        calendarView.locale = Locale(identifier: "ko_KR")
+
+        
     }
     
-    // MARK: - UISetup 진짜 신세계 ㄷㄷ
+    // MARK: - UISetup
     
     private func setupUI() {
         view.backgroundColor = .white
@@ -93,8 +96,9 @@ class MonthlyView: UIViewController {
 
 extension MonthlyView: FSCalendarDelegate, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        // Handle the logic when a date is selected
+                
     }
+    
     
     // Add more methods if needed
 }
@@ -103,7 +107,7 @@ extension MonthlyView: FSCalendarDelegate, FSCalendarDataSource {
 
 extension MonthlyView: FloatingButtonDelegate {
     func showAddTaskActionSheet() {
-        let addTaskSheet = AddTaskActionSheet(taskService: taskService) { [weak self] in
+        let addTaskSheet = AddTaskActionSheetController(taskService: taskService) { [weak self] in
             guard let self = self else { return }
             self.taskTableView.tasks = self.taskService.fetchActiveTasks()
             self.taskTableView.tableView.reloadData()

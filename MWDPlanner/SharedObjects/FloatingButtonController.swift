@@ -4,7 +4,7 @@ protocol FloatingButtonDelegate: AnyObject {
     func showAddTaskActionSheet()
 }
 
-class FloatingButton {
+class FloatingButtonController {
     
     // MARK: - Properties
     lazy var floatingButton: UIButton = {

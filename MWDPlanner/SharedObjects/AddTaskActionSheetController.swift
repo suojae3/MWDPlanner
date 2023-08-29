@@ -1,6 +1,6 @@
 import UIKit
 
-class AddTaskActionSheet: UIViewController {
+class AddTaskActionSheetController: UIViewController {
     
     // MARK: - Properties
     
