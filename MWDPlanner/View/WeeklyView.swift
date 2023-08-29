@@ -43,15 +43,24 @@ extension WeeklyView {
         calendarView.delegate = self
         calendarView.dataSource = self
         setupUI()
+        
+        QuoteService.shared.fetchRandomQuote { [weak self] quote in
+            DispatchQueue.main.async {
+                self?.titleLabel.text = quote
+            }
+        }
+
  
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         QuoteService.shared.fetchRandomQuote { [weak self] quote in
-             DispatchQueue.main.async {
-                 self?.titleLabel.text = quote
-             }
-         }
+            DispatchQueue.main.async {
+                self?.titleLabel.text = quote
+            }
+        }
+
     }
 
     private func setupUI() {

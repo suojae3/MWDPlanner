@@ -41,14 +41,23 @@ class MonthlyView: UIViewController {
         calendarView.delegate = self
         calendarView.dataSource = self
         calendarView.locale = Locale(identifier: "ko_KR")
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
+        
         QuoteService.shared.fetchRandomQuote { [weak self] quote in
             DispatchQueue.main.async {
                 self?.titleLabel.text = quote
             }
         }
+
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        QuoteService.shared.fetchRandomQuote { [weak self] quote in
+            DispatchQueue.main.async {
+                self?.titleLabel.text = quote
+            }
+        }
+
     }
     
     // MARK: - UISetup
