@@ -10,6 +10,7 @@
 		085869C62A9C92B100D403B0 /* AddTaskActionSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085869C52A9C92B100D403B0 /* AddTaskActionSheetController.swift */; };
 		085869C82A9C9AEA00D403B0 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085869C72A9C9AEA00D403B0 /* SearchBar.swift */; };
 		0867CAAA2A9CCD6800234E64 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0867CAA92A9CCD6800234E64 /* UIViewExtension.swift */; };
+		0867CAAE2A9DF3C700234E64 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0867CAAD2A9DF3C700234E64 /* Quote.swift */; };
 		08994E242A94F53800964768 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08994E232A94F53800964768 /* AppDelegate.swift */; };
 		08994E262A94F53800964768 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08994E252A94F53800964768 /* SceneDelegate.swift */; };
 		08994E282A94F53800964768 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08994E272A94F53800964768 /* TableViewController.swift */; };
@@ -28,6 +29,7 @@
 		085869C52A9C92B100D403B0 /* AddTaskActionSheetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskActionSheetController.swift; sourceTree = "<group>"; };
 		085869C72A9C9AEA00D403B0 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		0867CAA92A9CCD6800234E64 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		0867CAAD2A9DF3C700234E64 /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		08994E202A94F53800964768 /* MWDPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MWDPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08994E232A94F53800964768 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08994E252A94F53800964768 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			children = (
 				08994E532A958E7400964768 /* CRUDmodel.swift */,
 				08994E3B2A94F61300964768 /* DataSource.swift */,
+				0867CAAD2A9DF3C700234E64 /* Quote.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 				08994E3C2A94F61300964768 /* DataSource.swift in Sources */,
 				0867CAAA2A9CCD6800234E64 /* UIViewExtension.swift in Sources */,
 				08994E5B2A95BCDD00964768 /* FloatingButtonController.swift in Sources */,
+				0867CAAE2A9DF3C700234E64 /* Quote.swift in Sources */,
 				08994E402A94F63E00964768 /* DailyView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

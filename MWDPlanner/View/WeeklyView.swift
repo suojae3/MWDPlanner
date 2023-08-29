@@ -16,7 +16,6 @@ class WeeklyView: UIViewController {
     
     private let titleLabel: UILabel = {
         let title = UILabel()
-        title.text = "title"
         title.font = UIFont(name: "Inter-Medium", size: 24)
         return title
     }()
@@ -43,8 +42,16 @@ extension WeeklyView {
         calendarView.scope = .week
         calendarView.delegate = self
         calendarView.dataSource = self
-     
         setupUI()
+ 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        QuoteService.shared.fetchRandomQuote { [weak self] quote in
+             DispatchQueue.main.async {
+                 self?.titleLabel.text = quote
+             }
+         }
     }
 
     private func setupUI() {

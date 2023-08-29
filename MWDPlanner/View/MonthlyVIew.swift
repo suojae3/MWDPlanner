@@ -20,10 +20,10 @@ class MonthlyView: UIViewController {
     private let floatingButton = FloatingButtonController()
     private let searchBar = SearchBarController()
 
-    private let profileView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .lightGray
-        return view
+    private let titleLabel: UILabel = {
+        let title = UILabel()
+        title.font = UIFont(name: "Inter-Medium", size: 24)
+        return title
     }()
     
     private let calendarView: FSCalendar = {
@@ -41,27 +41,33 @@ class MonthlyView: UIViewController {
         calendarView.delegate = self
         calendarView.dataSource = self
         calendarView.locale = Locale(identifier: "ko_KR")
-
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        QuoteService.shared.fetchRandomQuote { [weak self] quote in
+            DispatchQueue.main.async {
+                self?.titleLabel.text = quote
+            }
+        }
     }
     
     // MARK: - UISetup
     
     private func setupUI() {
         view.backgroundColor = .white
-        [profileView, searchBar.searchBar, calendarView, taskTableView.tableView, floatingButton.floatingButton]
+        [titleLabel, searchBar.searchBar, calendarView, taskTableView.tableView, floatingButton.floatingButton]
             .forEach { view.addSubview($0)}
 
-        profileView.anchor(
+        titleLabel.anchor(
             top: view.safeAreaLayoutGuide.topAnchor,
             leading: view.leadingAnchor,
             trailing: view.trailingAnchor,
-            padding: .init(top: 0, left: 0, bottom: 0, right: 0),
+            padding: .init(top: 0, left: 20, bottom: 0, right: 20),
             size: .init(width: 0, height: 100)
         )
         
         searchBar.searchBar.anchor(
-            top: profileView.bottomAnchor,
+            top: titleLabel.bottomAnchor,
             leading: view.leadingAnchor,
             trailing: view.trailingAnchor,
             padding: .init(top: 10, left: 10, bottom: 0, right: 10)
@@ -71,7 +77,7 @@ class MonthlyView: UIViewController {
             top: searchBar.searchBar.bottomAnchor,
             leading: view.leadingAnchor,
             trailing: view.trailingAnchor,
-            padding: .init(top: 10, left: 0, bottom: 0, right: 0),
+            padding: .init(top: 10, left: 10, bottom: 0, right: 10),
             size: .init(width: 0, height: 300)
         )
         
@@ -80,7 +86,7 @@ class MonthlyView: UIViewController {
             leading: view.leadingAnchor,
             bottom: view.safeAreaLayoutGuide.bottomAnchor,
             trailing: view.trailingAnchor,
-            padding: .init(top: 10, left: 0, bottom: 0, right: 0)
+            padding: .init(top: 10, left: 10, bottom: 0, right: 10)
         )
         
         floatingButton.floatingButton.anchor(

@@ -105,7 +105,8 @@ extension TableViewController: UITableViewDataSource, UITableViewDelegate {
         
         action.backgroundColor = .black
         action.image = UIImage(systemName: "trash")
-        
+        tableView.reloadData()
+
         return UISwipeActionsConfiguration(actions: [action])
     }
     
