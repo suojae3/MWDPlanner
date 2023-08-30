@@ -1,7 +1,6 @@
 
 ## Structure
 
-&nbsp;&nbsp;&nbsp;&nbsp;<img src="Structure.png"><br/>
 
 <pre>
 Planner App <br/>
